@@ -1,10 +1,11 @@
 #include<iostream>
-#include<bit_reader.cpp>
+#include<string>
+#include"bit_reader.cpp"
+
 
 using namespace std;
 
 int main(){
-	if(read("test.txt")){
-		return 0;
-	}
+	char * file = load_file("test.txt");
+	cout << sizeof(file);
 }
