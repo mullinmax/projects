@@ -33,3 +33,20 @@ bool * char_to_bool(char * input, int char_length, int & bin_length){
 	bin_length = char_length * char_size;
 	return output;
 }
+
+char * bool_to_char(bool * input, int bin_length, int & char_length){
+	char_length = bin_length / 8;	
+	char * output = new char [char_length];
+	char temp;
+	for(int i = 0; i < bin_length; i+=8){
+		temp = 0;
+		for(int j = 0; j < 8; j++){
+			temp << 1;
+			if(input[i * 8 + j] == true){
+				temp += 1;	
+			}			
+		}
+		output[i] = temp;
+	}
+	return output;
+}
