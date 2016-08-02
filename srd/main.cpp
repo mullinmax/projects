@@ -6,10 +6,15 @@
 
 using namespace std;
 
-int main(){
+int main(int argc,char *arg[]){
+	if(argc != 3){
+		cout << "Please try again with the correct number of arguments\n";
+		return 0;
+	}
+	cout << arg[1];
 	int char_length = 0;
 	cout << endl << "LOADING" << endl;
-	char * char_file = load_file("a.out", char_length);
+	char * char_file = load_file(arg[1], char_length);
 	cout << endl << "----BEGIN RAW FILE----" << endl;
 	for(int i = 0; i < char_length; i++){
 		cout << char_file[i];
@@ -39,5 +44,5 @@ int main(){
 	}
 	cout << endl << "----END CONVERTED CHAR FILE----" << endl;
 	cout << endl << "SAVING FILE" << endl;
-	save_file("output.out", converted_char_file, char_length);
+	save_file(arg[2], converted_char_file, char_length);
 }
