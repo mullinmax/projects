@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string>
-#include"bit_reader.cpp"
+#include"char_to_bool.cpp"
 #include"load_save_files.cpp"
 
 
@@ -8,8 +8,8 @@ using namespace std;
 
 int main(){
 	int char_length = 0;
-	cout << endl << "----LOADING FILE----" << endl;
-	char * char_file = load_file("test.txt", char_length);
+	cout << endl << "LOADING" << endl;
+	char * char_file = load_file("a.out", char_length);
 	cout << endl << "----BEGIN RAW FILE----" << endl;
 	for(int i = 0; i < char_length; i++){
 		cout << char_file[i];
@@ -25,6 +25,9 @@ int main(){
 		if(i % 8 == 7){
 			cout << " ";
 		}
+		if(i % 64 == 63){
+			cout << endl;
+		}
 	}
 	cout << endl << "----END BINARY FILE----" << endl;
 
@@ -35,6 +38,6 @@ int main(){
 		cout << converted_char_file[i];
 	}
 	cout << endl << "----END CONVERTED CHAR FILE----" << endl;
-	cout << endl << "----SAVING FILE----" << endl;
-	save_file("output.txt", converted_char_file, char_length);
+	cout << endl << "SAVING FILE" << endl;
+	save_file("output.out", converted_char_file, char_length);
 }
