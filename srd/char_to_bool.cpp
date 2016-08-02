@@ -1,3 +1,6 @@
+//CONVERT TO USING STL LINKED LIST
+#include<STL>
+
 using namespace std;
 
 bool * char_to_bool(char * input, int char_length, int & bin_length){
