@@ -11,20 +11,23 @@ int main(int argc,char *arg[]){
 		cout << "Please try again with the correct number of arguments\n";
 		return 0;
 	}
-	cout << arg[1];
-	int char_length = 0;
-	cout << endl << "LOADING" << endl;
-	char * char_file = load_file(arg[1], char_length);
+
+
 	cout << endl << "----BEGIN RAW FILE----" << endl;
-	for(int i = 0; i < char_length; i++){
-		cout << char_file[i];
+	cout << endl << "LOADING" << endl;
+	int char_length = 0;
+	list<char> char_file = load_file(arg[1], char_length);
+	for (list<char>::iterator it = char_file.begin(); it != char_file.end(); ++it){
+    	cout << ' ' << *it;
 	}
 	cout << endl << "----END RAW FILE----" << endl;
 
 
+
+
 	cout << endl << "----BEGIN BINARY FILE----" << endl;
 	int bin_length;
-	bool * bin_file = char_to_bool(char_file, char_length, bin_length);
+	bool * bin_file = char_to_bool(char_file, bin_length);
 	for(int i = 0; i < bin_length; i++){
 		cout << bin_file[i];
 		if(i % 8 == 7){
@@ -35,6 +38,8 @@ int main(int argc,char *arg[]){
 		}
 	}
 	cout << endl << "----END BINARY FILE----" << endl;
+
+
 
 
 	cout << endl << "----BEGIN CONVERTED CHAR FILE----" << endl;

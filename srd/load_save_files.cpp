@@ -1,12 +1,13 @@
+#ifndef LOAD_SAVE_FILE
+#define LOAD_SAVE_FILE
 #include<iostream>
 #include<fstream>
 #include<string>
 
 //CONVERT TO USING STL LINKED LIST
-#include<STL>
+#include<list>
 
-#ifndef LOAD_SAVE_FILE
-#define LOAD_SAVE_FILE
+
 using namespace std;
 
 void save_file(string path, char * input, int length){
@@ -19,7 +20,7 @@ void save_file(string path, char * input, int length){
 }
 
 
-char * load_file(string input, int & length){
+list<char> load_file(string input, int & length){
 	ifstream fin (input.c_str(), ios::in|ios::binary|ios::ate);	//open file in binary mode and move to the end
 	char * memblock;	
 	streampos size;  	
@@ -33,6 +34,10 @@ char * load_file(string input, int & length){
 	}else{
 		cout << "error opening file" << endl;
 	}
-	return memblock;
+	list<char> file;
+	for(int i = 0; i < length; i++){
+		file.push_back(memblock[i]);
+	}
+	return file;
 }
 #endif

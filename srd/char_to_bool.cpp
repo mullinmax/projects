@@ -1,18 +1,19 @@
+#ifndef CHAR_TO_BOOL
+#define CHAR_TO_BOOL
+
 //CONVERT TO USING STL LINKED LIST
-#include<STL>
+#include<list>
 
 using namespace std;
 
-bool * char_to_bool(char * input, int char_length, int & bin_length){
+bool * char_to_bool(list<char> input, int & bin_length){
 	bool * output;
-	int char_size = 8;
-	output = new bool [char_length * char_size];
-	for(int i = 0; i < char_length; i++){	//loops over each char
-		for(int j = 0; j < char_size; j++){	//within each char this reads each binary digit
-			output[i*char_size+j] = (input[i] >> (7-j)) & 1;	
-		}
+	output = new bool [input.size() * 8];
+	int i = 0;
+	for (list<char>::iterator it = input.begin(); it != input.end(); ++it){
+		output[i] = *it;
+		i++;
 	}
-	bin_length = char_length * char_size;	//sets new size
 	return output;
 }
 
@@ -32,3 +33,5 @@ char * bool_to_char(bool * input, int bin_length, int & char_length){
 	}
 	return output;
 }
+
+#endif
