@@ -14,13 +14,12 @@ int main(int argc,char *arg[]){
 
 
 	cout << endl << "----BEGIN RAW FILE----" << endl;
-	cout << endl << "LOADING" << endl;
 	int char_length = 0;
 	list<char> char_file = load_file(arg[1], char_length);
 	for (list<char>::iterator it = char_file.begin(); it != char_file.end(); ++it){
-    	cout << ' ' << *it;
+    	cout << *it;
 	}
-	cout << endl << "----END RAW FILE----" << endl;
+	cout << "----END RAW FILE----" << endl;
 
 
 
@@ -37,7 +36,7 @@ int main(int argc,char *arg[]){
 			cout << endl;
 		}
 	}
-	cout << endl << "----END BINARY FILE----" << endl;
+	cout << "----END BINARY FILE----" << endl;
 
 
 
@@ -47,7 +46,6 @@ int main(int argc,char *arg[]){
 	for(int i = 0; i < char_length; i++){
 		cout << converted_char_file[i];
 	}
-	cout << endl << "----END CONVERTED CHAR FILE----" << endl;
-	cout << endl << "SAVING FILE" << endl;
+	cout << "----END CONVERTED CHAR FILE----" << endl;
 	save_file(arg[2], converted_char_file, char_length);
 }

@@ -8,11 +8,14 @@ using namespace std;
 
 bool * char_to_bool(list<char> input, int & bin_length){
 	bool * output;
-	output = new bool [input.size() * 8];
+	bin_length = input.size() * 8;
+	output = new bool [bin_length];
 	int i = 0;
 	for (list<char>::iterator it = input.begin(); it != input.end(); ++it){
-		output[i] = *it;
-		i++;
+		for(int offset = 0; offset < 8; offset++){		
+			output[i+offset] = (*it >> (7-offset)) & 1;
+		}
+		i+=8;
 	}
 	return output;
 }
