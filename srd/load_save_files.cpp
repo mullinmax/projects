@@ -10,11 +10,11 @@
 
 using namespace std;
 
-void save_file(string path, char * input, int length){
+void save_file(string path, list<char> input, int length){
 	ofstream fout;
 	fout.open(path.c_str());	//open a new stream
-	for(int i = 0; i < length; i++){	//print each character in array 
-		fout << input[i];
+	for (list<char>::iterator it = input.begin(); it != input.end(); ++it){
+    	fout << *it;
 	}
 	fout.close();
 }

@@ -26,15 +26,17 @@ int main(int argc,char *arg[]){
 
 	cout << endl << "----BEGIN BINARY FILE----" << endl;
 	int bin_length;
-	bool * bin_file = char_to_bool(char_file, bin_length);
-	for(int i = 0; i < bin_length; i++){
-		cout << bin_file[i];
+	list<bool> bin_file = char_to_bool(char_file, bin_length);
+	int i = 0;
+	for (list<bool>::iterator it = bin_file.begin(); it != bin_file.end(); ++it){
+    	cout << *it;
 		if(i % 8 == 7){
 			cout << " ";
 		}
 		if(i % 64 == 63){
 			cout << endl;
 		}
+		i++;
 	}
 	cout << "----END BINARY FILE----" << endl;
 
@@ -42,9 +44,9 @@ int main(int argc,char *arg[]){
 
 
 	cout << endl << "----BEGIN CONVERTED CHAR FILE----" << endl;
-	char * converted_char_file = bool_to_char(bin_file, bin_length, char_length);
-	for(int i = 0; i < char_length; i++){
-		cout << converted_char_file[i];
+	list<char> converted_char_file = bool_to_char(bin_file, bin_length, char_length);
+	for (list<char>::iterator it = converted_char_file.begin(); it != converted_char_file.end(); ++it){
+    	cout << *it;
 	}
 	cout << "----END CONVERTED CHAR FILE----" << endl;
 	save_file(arg[2], converted_char_file, char_length);

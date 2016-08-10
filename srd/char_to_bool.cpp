@@ -6,33 +6,31 @@
 
 using namespace std;
 
-bool * char_to_bool(list<char> input, int & bin_length){
-	bool * output;
+list<bool> char_to_bool(list<char> input, int & bin_length){
+	list<bool> output;
 	bin_length = input.size() * 8;
-	output = new bool [bin_length];
-	int i = 0;
-	for (list<char>::iterator it = input.begin(); it != input.end(); ++it){
+	for (list<char>::iterator it = input.begin(); it != input.end(); ++it){		
 		for(int offset = 0; offset < 8; offset++){		
-			output[i+offset] = (*it >> (7-offset)) & 1;
+			output.push_back((*it >> (7-offset)) & 1);
 		}
-		i+=8;
 	}
 	return output;
 }
 
-char * bool_to_char(bool * input, int bin_length, int & char_length){
-	char_length = bin_length / 8;	//sets new length
-	char * output = new char [char_length];	//declares new array of correct size
+list<char> bool_to_char(list<bool> input, int bin_length, int & char_length){
+	list<char> output;	
 	char temp;
-	for(int i = 0; i < char_length; i++){
-		temp = 0;
-		for(int j = 0; j < 8; j++){	//shifts temp one to the left and if nessisarry adds one to the value
-			temp = temp << 1;
-			if(input[i * 8 + j] == true){
-				temp += 1;	
-			}			
+	int count = 0;
+	for (list<bool>::iterator it = input.begin(); it != input.end(); ++it){
+		temp = temp << 1;		
+		if(*it == true){
+			temp += 1;
+		}		
+		if(count % 8 == 7){
+			output.push_back(temp);
+			temp = 0;
 		}
-		output[i] = temp;	//stores the new temp in the char array
+		count++;
 	}
 	return output;
 }
