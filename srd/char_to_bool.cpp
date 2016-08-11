@@ -1,7 +1,5 @@
 #ifndef CHAR_TO_BOOL
 #define CHAR_TO_BOOL
-
-//CONVERT TO USING STL LINKED LIST
 #include<list>
 
 using namespace std;
@@ -9,8 +7,9 @@ using namespace std;
 list<bool> char_to_bool(list<char> input, int & bin_length){
 	list<bool> output;
 	bin_length = input.size() * 8;
+	int offset;
 	for (list<char>::iterator it = input.begin(); it != input.end(); ++it){		
-		for(int offset = 0; offset < 8; offset++){		
+		for(offset = 0; offset < 8; offset++){		
 			output.push_back((*it >> (7-offset)) & 1);
 		}
 	}

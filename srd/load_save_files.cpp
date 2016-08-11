@@ -3,8 +3,6 @@
 #include<iostream>
 #include<fstream>
 #include<string>
-
-//CONVERT TO USING STL LINKED LIST
 #include<list>
 
 
