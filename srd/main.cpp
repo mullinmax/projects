@@ -88,4 +88,5 @@ int main(int argc,char *arg[]){
 
 	cout << "----SAVING CHAR FILE----" << endl;
 	save_file(arg[2], converted_char_file, char_length);
+
 }
