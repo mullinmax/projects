@@ -1,29 +1,24 @@
-#ifndef SORT
-#define SORT
+#ifndef LOC_CHAR
+#define LOC_CHAR
+using namespace std;
 
 struct loc_char{
-	int val;
+	long get_loc(){
+		return loc;
+	}
+	unsigned char val;
 	long loc;
+};
+
+long len(long next, long prev){
+	if(next < prev){
+		return len(prev, 0b11111111) + len(0b00000000, next);
 	}
-
-list<loc_char> sort(list<char> & input){
-	long location = 0;
-	list<loc_char> loc_chars;
-	loc_char temp;
-	for (list<char>::iterator it = input.begin(); it != input.end(); ++it){
-		temp.val = *it;
-		temp.loc = location;
-		loc_chars.push_back(temp);
-		location++;
+	int i = 0;
+	while(1 << i < next-prev){
+		i++;
 	}
-//convert to loc char
-	//loop until len(min.loc)+len(min.val) < len(it.dist) && it.loc > min.loc
-		//shortest len(dist)+len(change)
-		//swap with it+1
-
-
+	return i-1;
 }
-void unsort(list<char> & input){
 
-}
 #endif
