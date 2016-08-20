@@ -19,7 +19,7 @@ void save_file(string path, list<unsigned char> input, long length){
 }
 
 
-list<unsigned char> load_file(string input, long & length){
+list<loc_char> load_file(string input){
 	ifstream fin (input.c_str(), ios::in|ios::binary|ios::ate);	//open file in binary mode and move to the end
 	char * memblock;	
 	streampos size;  	
@@ -28,14 +28,13 @@ list<unsigned char> load_file(string input, long & length){
 		memblock = new char [size];	//make a new char array large enough for the file
 		fin.seekg (0, ios::beg);	//move to the beggining of the file
    		fin.read (memblock, size);	//read in the file
-		length = long(size);	//set length equal to the new size
    		fin.close();
 	}else{
 		cout << "error opening file" << endl;
 	}
 	list<loc_char> file;
 	loc_char temp;
-	for(int i = 0; i < length; i++){
+	for(int i = 0; i < size; i++){
 		temp.loc = i;
 		temp.val = memblock[i];
 		file.push_back(temp);

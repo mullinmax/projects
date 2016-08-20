@@ -7,7 +7,7 @@ struct loc_char{
 		return loc;
 	}
 	unsigned char val;
-	long loc;
+	unsigned long loc;
 };
 
 long len(long next, long prev){

@@ -4,7 +4,7 @@
 #include<string>
 #include<list>
 using namespace std;
-void add_header(list<bool> &input, int char_length){
+void add_header(list<bool> &input, unsigned long loc_bits, unsigned long val_bits){
 	
 	int bin_length = input.size();	
 	int bin_len_len = 0;
@@ -31,41 +31,37 @@ void add_header(list<bool> &input, int char_length){
 	}
 }
 
-void remove_header(list<bool> &input, int & char_length, int & bin_length){
-	int bin_len_len = 0;
-	char_length = 0;
-	bin_length = 0;
+void remove_header(list<bool> &input, unsigned long & loc_bits, unsigned char & val_bits){
+	int num_bits = 0;
 	bool stop = false;
 	list<bool>::iterator it = input.begin();
 	while(stop == false){
 		if(*it){
-			bin_len_len++;
+			num_bits++;
 		}else{
 			stop = true;
 		}
 		it++;
 		input.pop_front();
 	}
-	bin_length = 0;
-	for(int i = 0; i < bin_len_len; i++){
-		bin_length = bin_length << 1;		
+	loc_bits = 0;
+	for(int i = 0; i < num_bits; i++){
+		loc_bits = loc_bits << 1;		
 		if(*it){
-			bin_length++;
+			loc_bits++;
 		}
 		it++;
 		input.pop_front();
 	}
-	for(int i = 0; i < bin_len_len; i++){
-		char_length = char_length << 1;
+	val_bits = 0;
+	for(int i = 0; i < num_bits; i++){
+		val_bits = val_bits << 1;
 		if(*it){
-			char_length++;
+			val_bits++;
 		}
 		it++;
 		input.pop_front();
 	}
-	cout << endl << "char_length is == to:" << char_length << endl;
-	cout << endl << "bin length is == to:" << bin_length << endl;
-	cout << endl << "bin_len_len is == to:" << bin_len_len << endl;
 }
 
 #endif
