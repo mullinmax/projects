@@ -4,7 +4,7 @@
 #include<string>
 #include<list>
 using namespace std;
-void add_header(list<bool> &input, unsigned long loc_bits, unsigned long val_bits){
+void add_header(list<bool> &input, unsigned long loc_bits, unsigned long val_bits){//need to pass decompressed length
 	
 	int bin_length = input.size();	
 	int bin_len_len = 0;
