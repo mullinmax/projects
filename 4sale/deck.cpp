@@ -1,3 +1,5 @@
+#ifndef DECK
+#define DECK
 #include <random>
 #include <algorithm>
 #include <iterator>
@@ -6,13 +8,20 @@
 using namespace std;
 
 class deck{
-	public:	
+	public:
+		deck(){}
+		deck(int n){
+			for(int i = 0; i < n; ++i){
+				cards.push_back(i);
+			}
+		}
+	
 		deck(int n, int drop){
-			cards.clear();
 			for(int i = 0; i < n; ++i){
 				cards.push_back(i);
 			}
 			shuff();
+			trash(drop);
 		}
 		
 		void shuff(){
@@ -33,6 +42,9 @@ class deck{
 				cards.pop_back();
 			}
 		}
+		void gain(vector<int> pile){
+			cards.insert(cards.end(), pile.begin(), pile.end());
+		}
 		vector<int> draw(int num){
 			vector<int> output;
 			for(int i = 0; i < num && cards.size() > 0; ++i){
@@ -49,7 +61,17 @@ class deck{
 			return output;
 		}
 		void sort(){
-			
+			for(unsigned int i = 0; i < cards.size(); ++i){
+				int smallest = i;
+				for(unsigned int j = i; j < cards.size(); ++j){
+					if(cards[smallest] > cards[j]){
+						smallest = j;
+					}
+				}
+				int temp = cards[smallest];
+				cards[smallest] = cards[i];
+				cards[i] = temp;
+			}
 		}
 		void add_cards(vector<int> input){
 			while(input.size() > 0){
@@ -60,3 +82,5 @@ class deck{
 	private:
 		vector<int> cards;	
 };
+
+#endif
