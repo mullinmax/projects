@@ -18,10 +18,41 @@ int main(){
 	deck houses(num_rounds * num_players + num_drop, num_drop);	
 	deck cash(num_rounds * num_players + num_drop, num_drop);	
 	deck table;
+	deck houses_sold;
+
+
 	for(int i = 0; i < num_rounds; i++){
+		table.gain(houses.draw(num_players));//deal cards to table
+		table.sort();
 		int bids[num_players] = {0};
-		d
-		
+		bool new_bid = false;
+		unsigned int num_bidders = num_players;
+		do{
+			new_bid = false;
+			for(int p = 0; p < num_players; p++){
+				if(bids[p] != -1){	
+					unsigned int current_bid = players[p].bid(table, houses_sold, bids, num_rounds, i, num_players, p);
+					if(players[p].good_for_it(bids[p] + current_bid)){
+						if(current_bid == 0){
+							num_bidders--;
+							if(num_bidders == 0){
+								players[p].pay(bids[p]);//pay full price	
+							}else{
+								players[p].pay((bids[p]+1)/2);//takes card and pays half rouded up	
+							}
+							players[p].gain_house(table.reveal(1));
+							houses_sold.gain(table.draw(1));
+							bids[p] = -1;
+						}else{
+							new_bid = true;
+						}
+					}else{
+						//deal with someone over spending
+						//break their legs
+					}
+				}
+			}
+		}while(new_bid);
 	}
 
 
