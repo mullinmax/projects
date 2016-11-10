@@ -7,13 +7,28 @@
 using namespace std;
 
 int main(){
-	player p1(30);
+	int num_rounds = 15;
+	int starting_coins = 30;
+	int num_drop = 4;	
+	int num_players = 2;
+	player players[num_players];
+	for(int i = 0 ; i < num_players; i++){
+		players[i] = player(starting_coins);
+	}
+	deck houses(num_rounds * num_players + num_drop, num_drop);	
+	deck cash(num_rounds * num_players + num_drop, num_drop);	
+	deck table;
+	for(int i = 0; i < num_rounds; i++){
+		int bids[num_players] = {0};
+		d
+		
+	}
 
-	cout << endl << "10 drop 2 deck:" << endl;
-	deck numbers(10, 2);	
-	numbers.print();
 
-	cout << endl << "Sorted:" << endl;
+
+
+
+	/*cout << endl << "Sorted:" << endl;
 	numbers.sort();
 	numbers.print();
 	
@@ -28,7 +43,7 @@ int main(){
 	p1.draw_houses(2, numbers);
 	p1.print();
 	cout << "Deck:";
-	numbers.print();
+	numbers.print();*/
 
 	return 0;
 }

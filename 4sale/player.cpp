@@ -4,6 +4,9 @@
 
 class player{
 	public:
+		player(){
+			coins = 0;
+		}
 		player(int cash){
 			coins = cash;
 		}
@@ -17,6 +20,12 @@ class player{
 			houses.print();
 			cout << "cash:   ";
 			cash.print();
+		}
+		int bid(){
+			return 0;
+		}
+		void pay(){
+			return;
 		}
 	private:
 		int coins = 0;

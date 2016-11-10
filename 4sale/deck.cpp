@@ -45,6 +45,7 @@ class deck{
 		void gain(vector<int> pile){
 			cards.insert(cards.end(), pile.begin(), pile.end());
 		}
+
 		vector<int> draw(int num){
 			vector<int> output;
 			for(int i = 0; i < num && cards.size() > 0; ++i){
@@ -53,6 +54,7 @@ class deck{
 			}
 			return output;
 		}
+
 		vector<int> reveal(int num){
 			vector<int> output;
 			for(int i = 0; i < num && cards.size() > 0; ++i){
@@ -60,6 +62,7 @@ class deck{
 			}
 			return output;
 		}
+
 		void sort(){
 			for(unsigned int i = 0; i < cards.size(); ++i){
 				int smallest = i;
@@ -73,11 +76,16 @@ class deck{
 				cards[i] = temp;
 			}
 		}
+
 		void add_cards(vector<int> input){
 			while(input.size() > 0){
 				cards.push_back(input.back());
 				input.pop_back();
 			}
+		}
+
+		bool empty(){
+			return cards.size() == 0;
 		}
 	private:
 		vector<int> cards;	
