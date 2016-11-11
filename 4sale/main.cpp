@@ -22,7 +22,7 @@ int main(){
 
 
 	for(int i = 0; i < num_rounds; i++){
-		table.gain(houses.draw(num_players));//deal cards to table
+		table.add_cards(houses.draw(num_players));//deal cards to table
 		table.sort();
 		int bids[num_players] = {0};
 		bool new_bid = false;
@@ -40,8 +40,8 @@ int main(){
 							}else{
 								players[p].pay((bids[p]+1)/2);//takes card and pays half rouded up	
 							}
-							players[p].gain_house(table.reveal(1));
-							houses_sold.gain(table.draw(1));
+							players[p].add_house(table.reveal(1));
+							houses_sold.add_cards(table.draw(1));
 							bids[p] = -1;
 						}else{
 							new_bid = true;

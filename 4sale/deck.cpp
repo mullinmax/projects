@@ -42,8 +42,9 @@ class deck{
 				cards.pop_back();
 			}
 		}
-		void gain(vector<int> pile){
-			cards.insert(cards.end(), pile.begin(), pile.end());
+
+		void add_cards(vector<int> input){
+			cards.insert(cards.end(), input.begin(), input.end());
 		}
 
 		vector<int> draw(int num){
@@ -77,12 +78,6 @@ class deck{
 			}
 		}
 
-		void add_cards(vector<int> input){
-			while(input.size() > 0){
-				cards.push_back(input.back());
-				input.pop_back();
-			}
-		}
 
 		bool empty(){
 			return cards.size() == 0;
