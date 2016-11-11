@@ -31,24 +31,24 @@ int main(){
 			new_bid = false;
 			for(int p = 0; p < num_players; p++){
 				if(bids[p] != -1){	
+					if(num_bidders == 1){
+						players[p].pay(bids[p]);//pay full price	
+					}
 					unsigned int current_bid = players[p].bid(table, houses_sold, bids, num_rounds, i, num_players, p);
-					if(players[p].good_for_it(bids[p] + current_bid)){
-						if(current_bid == 0){
-							num_bidders--;
-							if(num_bidders == 0){
-								players[p].pay(bids[p]);//pay full price	
-							}else{
-								players[p].pay((bids[p]+1)/2);//takes card and pays half rouded up	
-							}
-							players[p].add_house(table.reveal(1));
-							houses_sold.add_cards(table.draw(1));
-							bids[p] = -1;
-						}else{
-							new_bid = true;
-						}
+					//check that the bid is actually larger than the last one
+					while(!players[p].good_for_it(bids[p] + current_bid || (current_bid != 0 && current_bid + bids[p] <= max_element(bids, bids + num_players)))){
+						cout << "----try again-----" << endl;
+						current_bid = players[p].bid(table, houses_sold, bids, num_rounds, i, num_players, p);
+					}
+					bids[p] += current_bid;
+					if(current_bid == 0){
+						num_bidders--;
+						players[p].pay((bids[p]+1)/2);//takes card and pays half rouded up	
+						players[p].add_house(table.reveal(1));
+						houses_sold.add_cards(table.draw(1));
+						bids[p] = -1;
 					}else{
-						//deal with someone over spending
-						//break their legs
+						new_bid = true;
 					}
 				}
 			}

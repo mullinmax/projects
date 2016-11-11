@@ -1,6 +1,7 @@
 #ifndef PLAYER
 #define PLAYER
 #include "deck.cpp"
+#include <iomanip>
 
 class player{
 	public:
@@ -24,7 +25,21 @@ class player{
 			cout << "currently for sale: ";
 			table.print();
 			cout << "amount of money you have left: "	<< coins << endl;
-			cout << "your current bid: " << bids[player_num] << endl;
+			cout << "Current bids: ";
+			int num_skips = 0;
+			for(int i = 0; i < num_players; i++){
+				if(bids[i] == -1){
+					num_skips++;
+				}else{
+					cout << setw(4) << bids[i];
+				}
+			}
+			cout << endl;
+			cout << "your bid (^):    ";
+			for(int i = 0; i < player_num - num_skips; i++){
+				cout << "    ";
+			}
+			cout << "^" << endl;
 			cout << "how much would you like to add to your bid?" << endl;
 			cin >> bid;
 			return bid;
