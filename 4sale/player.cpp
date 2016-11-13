@@ -31,15 +31,15 @@ class player{
 				if(bids[i] == -1){
 					num_skips++;
 				}else{
-					cout << setw(4) << bids[i];
+					cout << setw(5) << bids[i] << "|";
 				}
 			}
 			cout << endl;
-			cout << "your bid (^):    ";
+			cout << "your bid (^): ";
 			for(int i = 0; i < player_num - num_skips; i++){
-				cout << "    ";
+				cout << "      ";
 			}
-			cout << "^" << endl;
+			cout << "^^^^^" << endl;
 			cout << "how much would you like to add to your bid?" << endl;
 			cin >> bid;
 			return bid;
