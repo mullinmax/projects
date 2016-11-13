@@ -20,6 +20,8 @@ int main(){
 	deck table;
 	deck houses_sold;
 
+//BUYING HOUSES
+
 	srand (time(NULL));
 	int leader = rand()%num_players;
 	for(int i = 0; i < num_rounds; i++){
@@ -61,5 +63,7 @@ int main(){
 			p = p % num_players;
 		}while(num_bidders > 0);
 	}
-	return 0;
+
+	
+//SELLING HOUSES	
 }
