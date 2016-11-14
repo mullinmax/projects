@@ -18,13 +18,13 @@ int main(){
 	deck houses(num_rounds * num_players + num_drop, num_drop);	
 	deck cash(num_rounds * num_players + num_drop, num_drop);	
 	deck table;
-	deck houses_sold;
+	deck houses_bought;
 
 //BUYING HOUSES
 
 	srand (time(NULL));
 	int leader = rand()%num_players;
-	for(int i = 0; i < num_rounds; i++){
+	for(int r = 0; r < num_rounds; r++){
 		table.add_cards(houses.draw(num_players));//deal cards to table
 		table.sort();
 		int bids[num_players] = {0};
@@ -37,11 +37,11 @@ int main(){
 					num_bidders--;
 					players[p].pay(bids[p]);//takes card and pays full amount	
 					players[p].add_house(table.reveal(1));
-					houses_sold.add_cards(table.draw(1));
+					houses_bought.add_cards(table.draw(1));
 					bids[p] = -1;
 					leader = p; //becomes new leader	
 				}else{
-					unsigned int current_bid = players[p].bid(table, houses_sold, bids, num_rounds, i, num_players, p);
+					unsigned int current_bid = players[p].bid(table, houses_sold, bids, num_rounds, r, num_players, p);
 					//check that the bid is legit
 					while(current_bid != 0 && (!players[p].good_for_it(bids[p] + current_bid) || current_bid + bids[p] < highest_bid)){
 						cout << endl << "----try again-----" << endl << endl;
@@ -52,7 +52,7 @@ int main(){
 						num_bidders--;
 						players[p].pay((bids[p]+1)/2);//takes card and pays half rouded up	
 						players[p].add_house(table.reveal(1));
-						houses_sold.add_cards(table.draw(1));
+						houses_bought.add_cards(table.draw(1));
 						bids[p] = -1;
 					}else{
 						highest_bid = bids[p];
@@ -66,4 +66,11 @@ int main(){
 
 	
 //SELLING HOUSES	
+	for(int r = 0; r < num_rounds; r++){	
+		int bids[num_players] = {0};
+		table.add_cards(cash.draw(num_players));
+		for(int p = 0; p < num_players; p++){
+			bids[p] = players[p].sell_house(table, players, num_players, p);
+		}
+	}
 }
