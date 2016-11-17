@@ -41,11 +41,11 @@ int main(){
 					bids[p] = -1;
 					leader = p; //becomes new leader	
 				}else{
-					unsigned int current_bid = players[p].bid(table, houses_sold, bids, num_rounds, r, num_players, p);
+					unsigned int current_bid = players[p].bid(table, houses_bought, bids, num_rounds, r, num_players, p);
 					//check that the bid is legit
 					while(current_bid != 0 && (!players[p].good_for_it(bids[p] + current_bid) || current_bid + bids[p] < highest_bid)){
 						cout << endl << "----try again-----" << endl << endl;
-						current_bid = players[p].bid(table, houses_sold, bids, num_rounds, i, num_players, p);
+						current_bid = players[p].bid(table, houses_bought, bids, num_rounds, r, num_players, p);
 					}
 					bids[p] += current_bid;
 					if(current_bid == 0){
@@ -67,10 +67,36 @@ int main(){
 	
 //SELLING HOUSES	
 	for(int r = 0; r < num_rounds; r++){	
-		int bids[num_players] = {0};
+		unsigned int bids[num_players] = {0};
 		table.add_cards(cash.draw(num_players));
+		table.sort();
 		for(int p = 0; p < num_players; p++){
-			bids[p] = players[p].sell_house(table, players, num_players, p);
+			bids[p] = players[p].sell_house();
+		}
+		for(int i = 0; i < num_players; i++){
+			int index_max = 0;
+			for(int p = 0; p < num_players;	p++){
+				if(bids[p] > bids[index_max]){
+					index_max = p;
+				}
+				players[p].add_cash(table.draw(1));
+				players[p].remove_house(bids[p]);
+				bids[p] = -1;
+			}
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -44,6 +44,9 @@ class player{
 			cin >> bid;
 			return bid;
 		}
+		unsigned int sell_house(){
+			return 0;
+		}
 		void pay(int amount){
 			coins -= amount;
 		}
@@ -52,6 +55,9 @@ class player{
 		}
 		void add_house(vector<int> house){
 			houses.add_cards(house);
+		}
+		void add_cash(vector<int> money){
+			cash.add_cards(money);
 		}
 	private:
 		int coins = 0;
