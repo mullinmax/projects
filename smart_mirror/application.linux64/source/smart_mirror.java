@@ -28,7 +28,7 @@ public void setup() {
 
 public void draw() {
   //background (0);
-  fill(0, 0, 0, 10);
+  fill(255, 0, 0, 10);
   rect(0, 0, width, height);
   date(width/2, text_size + height/10, text_size);
   clock(width/2, height/10, text_size);
@@ -120,7 +120,7 @@ public void get_weather() {
 }
   public void settings() {  fullScreen(); }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "smart_mirror" };
+    String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--hide-stop", "smart_mirror" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
