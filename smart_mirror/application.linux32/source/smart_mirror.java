@@ -34,26 +34,27 @@ public void draw() {
   clock(width/2, height/10, text_size);
   get_weather();
 }
-public void clock(float x, float y, float size){
+public void clock(float x, float y, float size) {
   textSize(size);
   fill(255);
   int h = hour() % 12;
   int m = minute();
   int s = second();
   String time = h + ":";
-  if(m < 10){
-  time += "0";
+  if (m < 10) {
+    time += "0";
   }
-  time += m + ":";
-  if(s < 10){
+  time += m;
+  //seconds
+  /*time += ":";
+   if(s < 10){
    time += "0"; 
-  }
-  time += s;
-   
-  
+   }
+   time += s;
+   */
   text(time, x, y);
 }
-public void date(float x, float y, float size){
+public void date(float x, float y, float size) {
   textSize(size);
   fill(255);
   String date = month() + "/" + day() + "/" + year(); 
@@ -74,6 +75,8 @@ String high_today;
 String low_today;
 String low_tomorrow;
 String high_tomorrow;
+boolean good_call = false;
+int delay = 5000;
 
 public void get_weather() {
 
@@ -83,13 +86,18 @@ public void get_weather() {
   text("current tempurature: " + current_temp + "\u00b0", width / 2, 40+ height / 2);
   text("high for today: " + high_today + "\u00b0 low for today: " + low_today + "\u00b0", width / 2, 60+ height / 2);
   text("high for tomorrow: " + high_tomorrow + "\u00b0 low for tomorrow: " + low_tomorrow + "\u00b0", width / 2, 80+ height / 2);
-
-  if (previous_update + 5000 < millis()) {
+  if (good_call) {
+    delay = 1200000;
+  } else {
+    delay = 5000;
+  }
+  if (previous_update + delay < millis()) {
     xml = loadXML(server + location);
     previous_update = millis();
     if (xml != null) {
       XML location = xml.getChild("results/channel/yweather:location");
       if (location != null) {
+        good_call = true;
         city = location.getString("city");
         region = location.getString("region");
       }
@@ -118,6 +126,7 @@ public void get_weather() {
     }
   }
 }
+
   public void settings() {  fullScreen(); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--hide-stop", "smart_mirror" };

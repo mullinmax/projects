@@ -1,4 +1,4 @@
-void date(float x, float y, float size){
+void date(float x, float y, float size) {
   textSize(size);
   fill(255);
   String date = month() + "/" + day() + "/" + year(); 
