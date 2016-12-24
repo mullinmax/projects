@@ -28,7 +28,7 @@ public void setup() {
 
 public void draw() {
   //background (0);
-  fill(255, 0, 0, 10);
+  fill(0, 0, 0, 10);
   rect(0, 0, width, height);
   date(width/2, text_size + height/10, text_size);
   clock(width/2, height/10, text_size);
