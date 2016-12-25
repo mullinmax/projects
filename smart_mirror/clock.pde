@@ -1,5 +1,4 @@
-void clock(float x, float y, float size) {
-  textSize(size);
+void clock(float x, float y) {
   fill(255);
   int h = hour() % 12;
   int m = minute();
