@@ -14,7 +14,9 @@ import java.io.IOException;
 
 public class smart_mirror extends PApplet {
 
-String weather;
+PFont large_font;
+PFont small_font;
+
 
 int text_size = 20;
 public void setup() {
@@ -24,18 +26,21 @@ public void setup() {
   textAlign(CENTER);
   get_weather();
   frameRate(60);
+  large_font = createFont("Prototype.ttf", 45);
+  small_font = createFont("Prototype.ttf", 45);
 }
 
 public void draw() {
+  textFont(small_font);
   //background (0);
   fill(0, 0, 0, 10);
   rect(0, 0, width, height);
-  date(width/2, text_size + height/10, text_size);
-  clock(width/2, height/10, text_size);
+  date(width/2, 40+ height/10);
+  clock(width/2, height/10);
   get_weather();
 }
-public void clock(float x, float y, float size) {
-  textSize(size);
+
+public void clock(float x, float y) {
   fill(255);
   int h = hour() % 12;
   int m = minute();
@@ -54,14 +59,11 @@ public void clock(float x, float y, float size) {
    */
   text(time, x, y);
 }
-
-public void date(float x, float y, float size) {
-  textSize(size);
+public void date(float x, float y) {
   fill(255);
   String date = month() + "/" + day() + "/" + year(); 
   text(date, x, y);
 }
-
 
 
 XML xml;
@@ -81,16 +83,16 @@ boolean good_call = false;
 int delay = 5000;
 
 public void get_weather() {
-
-  fill(255);
-  text(city + ", " + region, width / 2, height / 2);
-  text("sunrise: " + sunrise + " sunset: " + sunset, width / 2, 20+ height / 2);
-  text("current tempurature: " + current_temp + "\u00b0", width / 2, 40+ height / 2);
-  text("high for today: " + high_today + "\u00b0 low for today: " + low_today + "\u00b0", width / 2, 60+ height / 2);
-  text("high for tomorrow: " + high_tomorrow + "\u00b0 low for tomorrow: " + low_tomorrow + "\u00b0", width / 2, 80+ height / 2);
   if (good_call) {
-    delay = 1200000;
+    fill(255);
+  text(city + ", " + region, width / 2, height / 2);
+  text("Sunrise: " + sunrise + "   Sunset: " + sunset, width / 2, 40+ height / 2);
+  text("Surrent tempurature: " + current_temp + "\u00b0", width / 2, 80+ height / 2);
+  text("High for today: " + high_today + "\u00b0   Low for today: " + low_today + "\u00b0", width / 2, 120+ height / 2);
+  text("High for tomorrow: " + high_tomorrow + "\u00b0   Low for tomorrow: " + low_tomorrow + "\u00b0", width / 2, 160+ height / 2);
+    delay = 5000;
   } else {
+    text("LOADING", width / 2, height/2);
     delay = 5000;
   }
   if (previous_update + delay < millis()) {
@@ -128,7 +130,6 @@ public void get_weather() {
     }
   }
 }
-
   public void settings() {  fullScreen(); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--hide-stop", "smart_mirror" };

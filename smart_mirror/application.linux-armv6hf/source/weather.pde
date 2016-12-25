@@ -16,16 +16,16 @@ boolean good_call = false;
 int delay = 5000;
 
 void get_weather() {
-
-  fill(255);
-  text(city + ", " + region, width / 2, height / 2);
-  text("sunrise: " + sunrise + " sunset: " + sunset, width / 2, 20+ height / 2);
-  text("current tempurature: " + current_temp + "°", width / 2, 40+ height / 2);
-  text("high for today: " + high_today + "° low for today: " + low_today + "°", width / 2, 60+ height / 2);
-  text("high for tomorrow: " + high_tomorrow + "° low for tomorrow: " + low_tomorrow + "°", width / 2, 80+ height / 2);
   if (good_call) {
-    delay = 1200000;
+    fill(255);
+  text(city + ", " + region, width / 2, height / 2);
+  text("Sunrise: " + sunrise + "   Sunset: " + sunset, width / 2, 40+ height / 2);
+  text("Surrent tempurature: " + current_temp + "°", width / 2, 80+ height / 2);
+  text("High for today: " + high_today + "°   Low for today: " + low_today + "°", width / 2, 120+ height / 2);
+  text("High for tomorrow: " + high_tomorrow + "°   Low for tomorrow: " + low_tomorrow + "°", width / 2, 160+ height / 2);
+    delay = 5000;
   } else {
+    text("LOADING", width / 2, height/2);
     delay = 5000;
   }
   if (previous_update + delay < millis()) {
