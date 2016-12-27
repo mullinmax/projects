@@ -33,7 +33,7 @@ public void setup() {
 
 public void draw() {
   //background (0);
-  fill(0, 0, 0, 10);
+  fill(255, 0, 0, 10);
   rect(0, 0, width, height);
   textFont(large_font);
   holidays(hol);
