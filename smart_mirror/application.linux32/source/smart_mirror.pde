@@ -24,5 +24,5 @@ void draw() {
   date(width/2, 240);
   clock(width/2, 120);
   textFont(small_font);
-  //get_weather();
+  get_weather();
 }

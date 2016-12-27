@@ -22,8 +22,8 @@ void get_weather() {
   text("It is " + condition_now + " in " + city + ", " + region, width / 2, height - 160);
   text("Current tempurature: " + current_temp + "°", width / 2, height - 120);
   text("Sunrise: " + sunrise + " Sunset: " + sunset, width / 2, height - 80);
-  text("Today day: " + high_today + "° - " + low_today + "°", width / 2, height - 40);
-  text("Tomorrow: " + high_tomorrow + "° - " + low_tomorrow + "°", width / 2, height);
+  text("Today day: " + low_today + "° - " + high_today + "°", width / 2, height - 40);
+  text("Tomorrow: " + low_tomorrow + "° - " + high_tomorrow + "°", width / 2, height);
     delay = 5000;
   } else {
     text("LOADING...", width / 2, 40 + height/2);

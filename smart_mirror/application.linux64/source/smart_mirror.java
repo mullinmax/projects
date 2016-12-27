@@ -40,7 +40,7 @@ public void draw() {
   date(width/2, 240);
   clock(width/2, 120);
   textFont(small_font);
-  //get_weather();
+  get_weather();
 }
 public void holidays(String hol[]) {
   for (int i = 1; i < hol.length; i++) {
@@ -59,7 +59,6 @@ public void holidays(String hol[]) {
     }
   }
 }
-
 public void clock(float x, float y) {
   fill(255);
   int h = hour() % 12;
@@ -109,8 +108,8 @@ public void get_weather() {
   text("It is " + condition_now + " in " + city + ", " + region, width / 2, height - 160);
   text("Current tempurature: " + current_temp + "\u00b0", width / 2, height - 120);
   text("Sunrise: " + sunrise + " Sunset: " + sunset, width / 2, height - 80);
-  text("Today day: " + high_today + "\u00b0 - " + low_today + "\u00b0", width / 2, height - 40);
-  text("Tomorrow: " + high_tomorrow + "\u00b0 - " + low_tomorrow + "\u00b0", width / 2, height);
+  text("Today day: " + low_today + "\u00b0 - " + high_today + "\u00b0", width / 2, height - 40);
+  text("Tomorrow: " + low_tomorrow + "\u00b0 - " + high_tomorrow + "\u00b0", width / 2, height);
     delay = 5000;
   } else {
     text("LOADING...", width / 2, 40 + height/2);
