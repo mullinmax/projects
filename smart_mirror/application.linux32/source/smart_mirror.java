@@ -16,7 +16,7 @@ public class smart_mirror extends PApplet {
 
 PFont large_font;
 PFont small_font;
-
+String hol[];
 
 int text_size = 20;
 public void setup() {
@@ -28,6 +28,7 @@ public void setup() {
   frameRate(60);
   large_font = createFont("Prototype.ttf", 120);
   small_font = createFont("Prototype.ttf", 45);
+  hol = loadStrings("hol.txt");
 }
 
 public void draw() {
@@ -35,10 +36,28 @@ public void draw() {
   fill(0, 0, 0, 10);
   rect(0, 0, width, height);
   textFont(large_font);
+  holidays(hol);
   date(width/2, 240);
   clock(width/2, 120);
   textFont(small_font);
   get_weather();
+}
+public void holidays(String hol[]) {
+  for (int i = 1; i < hol.length; i++) {
+    String minute = hol[i].substring(0, 2);
+    String hour = hol[i].substring(3, 5);
+    String day = hol[i].substring(6, 8);
+    String month = hol[i].substring(9, 11);
+    if (minute.equals("**")|| minute() == PApplet.parseInt(minute)) {
+      if (hour.equals("**")|| hour() == PApplet.parseInt(hour)) {
+        if (day.equals("**")|| day() == PApplet.parseInt(day)) {
+          if (month.equals("**")|| month() == PApplet.parseInt(month)) {
+            println(hol[i]);
+          }
+        }
+      }
+    }
+  }
 }
 public void clock(float x, float y) {
   fill(255);
