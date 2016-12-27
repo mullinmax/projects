@@ -16,7 +16,7 @@ public class smart_mirror extends PApplet {
 
 PFont large_font;
 PFont small_font;
-
+String hol[];
 
 int text_size = 20;
 public void setup() {
@@ -26,18 +26,38 @@ public void setup() {
   textAlign(CENTER);
   get_weather();
   frameRate(60);
-  large_font = createFont("Prototype.ttf", 45);
+  large_font = createFont("Prototype.ttf", 120);
   small_font = createFont("Prototype.ttf", 45);
+  hol = loadStrings("hol.txt");
 }
 
 public void draw() {
-  textFont(small_font);
   //background (0);
   fill(0, 0, 0, 10);
   rect(0, 0, width, height);
-  date(width/2, 40+ height/10);
-  clock(width/2, height/10);
-  get_weather();
+  textFont(large_font);
+  holidays(hol);
+  date(width/2, 240);
+  clock(width/2, 120);
+  textFont(small_font);
+  //get_weather();
+}
+public void holidays(String hol[]) {
+  for (int i = 1; i < hol.length; i++) {
+    String minute = hol[i].substring(0, 2);
+    String hour = hol[i].substring(3, 5);
+    String day = hol[i].substring(6, 8);
+    String month = hol[i].substring(9, 11);
+    if (minute.equals("**")|| minute() == PApplet.parseInt(minute)) {
+      if (hour.equals("**")|| hour() == PApplet.parseInt(hour)) {
+        if (day.equals("**")|| day() == PApplet.parseInt(day)) {
+          if (month.equals("**")|| month() == PApplet.parseInt(month)) {
+            println(hol[i]);
+          }
+        }
+      }
+    }
+  }
 }
 
 public void clock(float x, float y) {
@@ -75,6 +95,7 @@ String region;
 String sunrise;
 String sunset;
 String current_temp;
+String condition_now;
 String high_today;
 String low_today;
 String low_tomorrow;
@@ -85,14 +106,14 @@ int delay = 5000;
 public void get_weather() {
   if (good_call) {
     fill(255);
-  text(city + ", " + region, width / 2, height / 2);
-  text("Sunrise: " + sunrise + "   Sunset: " + sunset, width / 2, 40+ height / 2);
-  text("Surrent tempurature: " + current_temp + "\u00b0", width / 2, 80+ height / 2);
-  text("High for today: " + high_today + "\u00b0   Low for today: " + low_today + "\u00b0", width / 2, 120+ height / 2);
-  text("High for tomorrow: " + high_tomorrow + "\u00b0   Low for tomorrow: " + low_tomorrow + "\u00b0", width / 2, 160+ height / 2);
+  text("It is " + condition_now + " in " + city + ", " + region, width / 2, height - 160);
+  text("Current tempurature: " + current_temp + "\u00b0", width / 2, height - 120);
+  text("Sunrise: " + sunrise + " Sunset: " + sunset, width / 2, height - 80);
+  text("Today day: " + high_today + "\u00b0 - " + low_today + "\u00b0", width / 2, height - 40);
+  text("Tomorrow: " + high_tomorrow + "\u00b0 - " + low_tomorrow + "\u00b0", width / 2, height);
     delay = 5000;
   } else {
-    text("LOADING", width / 2, height/2);
+    text("LOADING...", width / 2, 40 + height/2);
     delay = 5000;
   }
   if (previous_update + delay < millis()) {
@@ -108,6 +129,7 @@ public void get_weather() {
       XML weather_now = xml.getChild("results/channel/item/yweather:condition");
       if (weather_now != null) {
         current_temp = weather_now.getString("temp");
+        condition_now = weather_now.getString("text");
       }
       XML sun = xml.getChild("results/channel/yweather:astronomy");
       if (sun != null) {

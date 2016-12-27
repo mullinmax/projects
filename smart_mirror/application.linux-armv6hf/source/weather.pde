@@ -8,6 +8,7 @@ String region;
 String sunrise;
 String sunset;
 String current_temp;
+String condition_now;
 String high_today;
 String low_today;
 String low_tomorrow;
@@ -18,14 +19,14 @@ int delay = 5000;
 void get_weather() {
   if (good_call) {
     fill(255);
-  text(city + ", " + region, width / 2, height / 2);
-  text("Sunrise: " + sunrise + "   Sunset: " + sunset, width / 2, 40+ height / 2);
-  text("Surrent tempurature: " + current_temp + "°", width / 2, 80+ height / 2);
-  text("High for today: " + high_today + "°   Low for today: " + low_today + "°", width / 2, 120+ height / 2);
-  text("High for tomorrow: " + high_tomorrow + "°   Low for tomorrow: " + low_tomorrow + "°", width / 2, 160+ height / 2);
+  text("It is " + condition_now + " in " + city + ", " + region, width / 2, height - 160);
+  text("Current tempurature: " + current_temp + "°", width / 2, height - 120);
+  text("Sunrise: " + sunrise + " Sunset: " + sunset, width / 2, height - 80);
+  text("Today day: " + high_today + "° - " + low_today + "°", width / 2, height - 40);
+  text("Tomorrow: " + high_tomorrow + "° - " + low_tomorrow + "°", width / 2, height);
     delay = 5000;
   } else {
-    text("LOADING", width / 2, height/2);
+    text("LOADING...", width / 2, 40 + height/2);
     delay = 5000;
   }
   if (previous_update + delay < millis()) {
@@ -41,6 +42,7 @@ void get_weather() {
       XML weather_now = xml.getChild("results/channel/item/yweather:condition");
       if (weather_now != null) {
         current_temp = weather_now.getString("temp");
+        condition_now = weather_now.getString("text");
       }
       XML sun = xml.getChild("results/channel/yweather:astronomy");
       if (sun != null) {
