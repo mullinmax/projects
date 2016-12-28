@@ -20,8 +20,8 @@ String hol[];
 
 int text_size = 20;
 public void setup() {
-  //size(500, 500);
   
+  //fullScreen();
   noCursor();
   textAlign(CENTER);
   get_weather();
@@ -35,29 +35,65 @@ public void draw() {
   //background (0);
   fill(0, 0, 0, 10);
   rect(0, 0, width, height);
-  textFont(large_font);
   holidays(hol);
+  textFont(large_font);
   date(width/2, 240);
   clock(width/2, 120);
   textFont(small_font);
   get_weather();
 }
+PFont temp_font;
+int previous_line = -1;
+
 public void holidays(String hol[]) {
   for (int i = 1; i < hol.length; i++) {
     String minute = hol[i].substring(0, 2);
     String hour = hol[i].substring(3, 5);
     String day = hol[i].substring(6, 8);
-    String month = hol[i].substring(9, 11);
-    if (minute.equals("**")|| minute() == PApplet.parseInt(minute)) {
-      if (hour.equals("**")|| hour() == PApplet.parseInt(hour)) {
-        if (day.equals("**")|| day() == PApplet.parseInt(day)) {
-          if (month.equals("**")|| month() == PApplet.parseInt(month)) {
-            println(hol[i]);
+    String week_day = hol[i].substring(9, 11);
+    String month = hol[i].substring(12, 14);
+    String year = hol[i].substring(15, 19);
+    println("-"+minute+"-"+hour+"-"+day+"-"+week_day+"-"+month+"-"+year+"-");
+    if (minute.equals("**") || minute() == PApplet.parseInt(minute)) {
+      if (hour.equals("**") || hour() == PApplet.parseInt(hour)) {
+        if (week_day.equals("**") || day_of_week() == PApplet.parseInt(week_day)) { 
+          if (day.equals("**") || day() == PApplet.parseInt(day)) {
+            if (month.equals("**") || month() == PApplet.parseInt(month)) {
+              if (year.equals("****") ||year() == PApplet.parseInt(year)) {
+                String red = hol[i].substring(20, 23);
+                String green = hol[i].substring(24, 27);
+                String blue = hol[i].substring(28, 31);
+                String font_name = hol[i].substring(32, 40);
+                String display_text = hol[i].substring(41);
+                println("-"+red+"-"+green+"-"+blue+"-"+font_name+"-"+display_text+"-");
+                if (previous_line != i) {
+                  temp_font = createFont(font_name, 120);
+                  previous_line = i;
+                }
+                textFont(temp_font);
+                fill(PApplet.parseFloat(red), PApplet.parseFloat(green), PApplet.parseFloat(blue));
+                text(display_text, width/2, 360);
+                return;
+              }
+            }
           }
         }
       }
     }
   }
+  previous_line = -1;
+}
+
+
+public int day_of_week() {
+  int d = day();
+  int m = month();
+  int y = year();
+  if (m < 3) {
+    m += 12;
+    y--;
+  }
+  return((d + PApplet.parseInt((m+1)*2.6f) +  y + PApplet.parseInt(y/4) + 6*PApplet.parseInt(y/100) + PApplet.parseInt(y/400) + 6) % 7);
 }
 public void clock(float x, float y) {
   fill(255);
@@ -112,7 +148,7 @@ public void get_weather() {
   text("Tomorrow: " + low_tomorrow + "\u00b0 - " + high_tomorrow + "\u00b0", width / 2, height);
     delay = 5000;
   } else {
-    text("LOADING...", width / 2, 40 + height/2);
+ //   text("LOADING...", width / 2, 40 + height/2);
     delay = 5000;
   }
   if (previous_update + delay < millis()) {
@@ -151,7 +187,7 @@ public void get_weather() {
     }
   }
 }
-  public void settings() {  fullScreen(); }
+  public void settings() {  size(1024, 600); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--hide-stop", "smart_mirror" };
     if (passedArgs != null) {

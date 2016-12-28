@@ -26,7 +26,7 @@ void get_weather() {
   text("Tomorrow: " + low_tomorrow + "° - " + high_tomorrow + "°", width / 2, height);
     delay = 5000;
   } else {
-    text("LOADING...", width / 2, 40 + height/2);
+ //   text("LOADING...", width / 2, 40 + height/2);
     delay = 5000;
   }
   if (previous_update + delay < millis()) {

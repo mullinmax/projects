@@ -4,8 +4,8 @@ String hol[];
 
 int text_size = 20;
 void setup() {
-  //size(500, 500);
-  fullScreen();
+  size(1024, 600);
+  //fullScreen();
   noCursor();
   textAlign(CENTER);
   get_weather();
@@ -19,8 +19,8 @@ void draw() {
   //background (0);
   fill(0, 0, 0, 10);
   rect(0, 0, width, height);
-  textFont(large_font);
   holidays(hol);
+  textFont(large_font);
   date(width/2, 240);
   clock(width/2, 120);
   textFont(small_font);
