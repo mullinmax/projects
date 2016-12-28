@@ -16,29 +16,32 @@ public class smart_mirror extends PApplet {
 
 PFont large_font;
 PFont small_font;
+int small_size = 35;
+int large_size = 100;
+
 String hol[];
 
 int text_size = 20;
 public void setup() {
+  //size(1024, 600);
   
-  //fullScreen();
   noCursor();
   textAlign(CENTER);
   get_weather();
   frameRate(60);
-  large_font = createFont("Prototype.ttf", 120);
-  small_font = createFont("Prototype.ttf", 45);
+  large_font = createFont("Prototype.ttf", PApplet.parseInt(1.2f *large_size));
+  small_font = createFont("Prototype.ttf", PApplet.parseInt(1.2f * small_size));
   hol = loadStrings("hol.txt");
 }
 
 public void draw() {
   //background (0);
-  fill(0, 0, 0, 10);
+  fill(0, 0, 0);//, 10);
   rect(0, 0, width, height);
   holidays(hol);
   textFont(large_font);
-  date(width/2, 240);
-  clock(width/2, 120);
+  date(width/2, 2 * large_size);
+  clock(width/2, large_size);
   textFont(small_font);
   get_weather();
 }
@@ -47,6 +50,9 @@ int previous_line = -1;
 
 public void holidays(String hol[]) {
   for (int i = 1; i < hol.length; i++) {
+    if(hol[i] == null || hol[i].length() < 41){
+      return;
+    }
     String minute = hol[i].substring(0, 2);
     String hour = hol[i].substring(3, 5);
     String day = hol[i].substring(6, 8);
@@ -71,7 +77,7 @@ public void holidays(String hol[]) {
                 }
                 textFont(temp_font);
                 fill(PApplet.parseFloat(red), PApplet.parseFloat(green), PApplet.parseFloat(blue));
-                text(display_text, width/2, 360);
+                text(display_text, width/2, 3*large_size);
                 return;
               }
             }
@@ -94,10 +100,12 @@ public int day_of_week() {
   }
   return((d + PApplet.parseInt((m+1)*2.6f) +  y + PApplet.parseInt(y/4) + 6*PApplet.parseInt(y/100) + PApplet.parseInt(y/400) + 6) % 7);
 }
-
 public void clock(float x, float y) {
   fill(255);
   int h = hour() % 12;
+  if(h == 0){
+    h = 12;
+  }
   int m = minute();
   int s = second();
   String time = h + ":";
@@ -141,12 +149,12 @@ int delay = 5000;
 public void get_weather() {
   if (good_call) {
     fill(255);
-  text("It is " + condition_now + " in " + city + ", " + region, width / 2, height - 160);
-  text("Current tempurature: " + current_temp + "\u00b0", width / 2, height - 120);
-  text("Sunrise: " + sunrise + " Sunset: " + sunset, width / 2, height - 80);
-  text("Today day: " + low_today + "\u00b0 - " + high_today + "\u00b0", width / 2, height - 40);
+  text("It is " + condition_now + " in " + city + ", " + region, width / 2, height - small_size * 4);
+  text("Current tempurature: " + current_temp + "\u00b0", width / 2, height - small_size * 3);
+  text("Sunrise: " + sunrise + " Sunset: " + sunset, width / 2, height - small_size * 2);
+  text("Today: " + low_today + "\u00b0 - " + high_today + "\u00b0", width / 2, height - small_size);
   text("Tomorrow: " + low_tomorrow + "\u00b0 - " + high_tomorrow + "\u00b0", width / 2, height);
-    delay = 5000;
+    delay = 60000;
   } else {
  //   text("LOADING...", width / 2, 40 + height/2);
     delay = 5000;
@@ -187,9 +195,9 @@ public void get_weather() {
     }
   }
 }
-  public void settings() {  size(1024, 600); }
+  public void settings() {  fullScreen(); }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--hide-stop", "smart_mirror" };
+    String[] appletArgs = new String[] { "smart_mirror" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {

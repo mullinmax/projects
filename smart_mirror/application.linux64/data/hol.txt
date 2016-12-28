@@ -5,3 +5,5 @@ mm hh dd wd mm yyyy rrr ggg bbb fontname message
 ** ** 01 ** 01 **** 255 255 255 fncy.ttf Happy new year!
 ** ** 24 ** 12 **** 255 255 255 fncy.ttf Christmas eve
 ** ** 25 ** 12 **** 255 255 255 fncy.ttf Merry Christmas!
+** ** 02 ** 02 **** 255 255 255 fncy.ttf Happy Birthday!
+

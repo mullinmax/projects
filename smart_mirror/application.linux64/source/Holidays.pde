@@ -3,6 +3,9 @@ int previous_line = -1;
 
 void holidays(String hol[]) {
   for (int i = 1; i < hol.length; i++) {
+    if(hol[i] == null || hol[i].length() < 41){
+      return;
+    }
     String minute = hol[i].substring(0, 2);
     String hour = hol[i].substring(3, 5);
     String day = hol[i].substring(6, 8);
@@ -27,7 +30,7 @@ void holidays(String hol[]) {
                 }
                 textFont(temp_font);
                 fill(float(red), float(green), float(blue));
-                text(display_text, width/2, 360);
+                text(display_text, width/2, 3*large_size);
                 return;
               }
             }

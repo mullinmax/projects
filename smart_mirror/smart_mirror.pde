@@ -13,8 +13,8 @@ void setup() {
   textAlign(CENTER);
   get_weather();
   frameRate(60);
-  large_font = createFont("Prototype.ttf", 1.2 *large_size);
-  small_font = createFont("Prototype.ttf", 1.2 * small_size);
+  large_font = createFont("Prototype.ttf", int(1.2 *large_size));
+  small_font = createFont("Prototype.ttf", int(1.2 * small_size));
   hol = loadStrings("hol.txt");
 }
 

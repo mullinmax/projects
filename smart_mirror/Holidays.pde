@@ -3,6 +3,9 @@ int previous_line = -1;
 
 void holidays(String hol[]) {
   for (int i = 1; i < hol.length; i++) {
+    if(hol[i] == null || hol[i].length() < 41){
+      return;
+    }
     String minute = hol[i].substring(0, 2);
     String hour = hol[i].substring(3, 5);
     String day = hol[i].substring(6, 8);

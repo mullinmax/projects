@@ -1,6 +1,9 @@
 void clock(float x, float y) {
   fill(255);
   int h = hour() % 12;
+  if(h == 0){
+    h = 12;
+  }
   int m = minute();
   int s = second();
   String time = h + ":";
