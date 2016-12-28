@@ -1,4 +1,7 @@
 mm hh dd wd mm yyyy rrr ggg bbb fontname message
 11 23 ** ** ** **** 255 255 255 fncy.ttf Make a wish!
 11 11 ** ** ** **** 255 255 255 fncy.ttf Make a wish!
-** ** ** ** ** **** 255 255 255 fncy.ttf This is a Test
+** ** 31 ** 12 **** 255 255 255 fncy.ttf New Year's eve
+** ** 01 ** 01 **** 255 255 255 fncy.ttf Happy new year!
+** ** 24 ** 12 **** 255 255 255 fncy.ttf Christmas eve
+** ** 25 ** 12 **** 255 255 255 fncy.ttf Merry Christmas!

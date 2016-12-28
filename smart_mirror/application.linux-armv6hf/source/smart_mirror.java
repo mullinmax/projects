@@ -53,7 +53,6 @@ public void holidays(String hol[]) {
     String week_day = hol[i].substring(9, 11);
     String month = hol[i].substring(12, 14);
     String year = hol[i].substring(15, 19);
-    println("-"+minute+"-"+hour+"-"+day+"-"+week_day+"-"+month+"-"+year+"-");
     if (minute.equals("**") || minute() == PApplet.parseInt(minute)) {
       if (hour.equals("**") || hour() == PApplet.parseInt(hour)) {
         if (week_day.equals("**") || day_of_week() == PApplet.parseInt(week_day)) { 
@@ -65,7 +64,7 @@ public void holidays(String hol[]) {
                 String blue = hol[i].substring(28, 31);
                 String font_name = hol[i].substring(32, 40);
                 String display_text = hol[i].substring(41);
-                println("-"+red+"-"+green+"-"+blue+"-"+font_name+"-"+display_text+"-");
+                //println("-"+red+"-"+green+"-"+blue+"-"+font_name+"-"+display_text+"-");
                 if (previous_line != i) {
                   temp_font = createFont(font_name, 120);
                   previous_line = i;
@@ -95,6 +94,7 @@ public int day_of_week() {
   }
   return((d + PApplet.parseInt((m+1)*2.6f) +  y + PApplet.parseInt(y/4) + 6*PApplet.parseInt(y/100) + PApplet.parseInt(y/400) + 6) % 7);
 }
+
 public void clock(float x, float y) {
   fill(255);
   int h = hour() % 12;

@@ -9,7 +9,6 @@ void holidays(String hol[]) {
     String week_day = hol[i].substring(9, 11);
     String month = hol[i].substring(12, 14);
     String year = hol[i].substring(15, 19);
-    println("-"+minute+"-"+hour+"-"+day+"-"+week_day+"-"+month+"-"+year+"-");
     if (minute.equals("**") || minute() == int(minute)) {
       if (hour.equals("**") || hour() == int(hour)) {
         if (week_day.equals("**") || day_of_week() == int(week_day)) { 
@@ -21,7 +20,7 @@ void holidays(String hol[]) {
                 String blue = hol[i].substring(28, 31);
                 String font_name = hol[i].substring(32, 40);
                 String display_text = hol[i].substring(41);
-                println("-"+red+"-"+green+"-"+blue+"-"+font_name+"-"+display_text+"-");
+                //println("-"+red+"-"+green+"-"+blue+"-"+font_name+"-"+display_text+"-");
                 if (previous_line != i) {
                   temp_font = createFont(font_name, 120);
                   previous_line = i;
