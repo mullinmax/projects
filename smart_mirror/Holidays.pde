@@ -27,7 +27,7 @@ void holidays(String hol[]) {
                 }
                 textFont(temp_font);
                 fill(float(red), float(green), float(blue));
-                text(display_text, width/2, 360);
+                text(display_text, width/2, 3*large_size);
                 return;
               }
             }
