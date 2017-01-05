@@ -7,8 +7,8 @@ String hol[];
 
 int text_size = 20;
 void setup() {
-  //size(1024, 600);
-  fullScreen();
+  size(1024, 600);
+  //fullScreen();
   noCursor();
   textAlign(CENTER);
   get_weather();
