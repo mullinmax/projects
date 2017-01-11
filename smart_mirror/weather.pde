@@ -2,7 +2,7 @@
 XML xml;
 int previous_update;
 String server = "http://query.yahooapis.com/v1/public/yql?format=xml&q=select+*+from+weather.forecast+where+woeid=";
-String location = "2356937+and+u='F'"; // newcastle upon type in F
+String location = "2356937+and+u='F'";
 String city;
 String region;
 String sunrise;
@@ -67,8 +67,7 @@ void get_weather() {
         }
       }
     }
-  }
-  catch(NullPointerException e) {
+  }catch(NullPointerException e) {
     text("NO INTERNET", 150, small_size);
   }
 }
