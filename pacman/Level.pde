@@ -56,6 +56,7 @@ class level {
     background.updatePixels();
   }
   void draw_level() {
+    background(0);
     image(background, 0, 0, width, height);
   }
 
