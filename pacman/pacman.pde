@@ -9,10 +9,9 @@ void setup(){
   feild.load_level("test_save.txt");
   feild.print_level();
   feild.render_level();
-  feild.draw_level();
   
 }
 
 void draw(){
-  
+  feild.draw_level();
 }
