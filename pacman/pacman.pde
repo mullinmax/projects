@@ -1,5 +1,7 @@
 level feild = new level();
 
+
+
 void setup(){
   size(500, 500);
   smooth(0);
