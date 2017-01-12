@@ -38,8 +38,11 @@ class level {
       graphics = loadImage("graphics_test.png");
     }
     scale = 40;//width / tiles_wide;
-    PImage wall_img = graphics.get(0, 0, 9, 9);
-    PImage empty_img = graphics.get(10, 10, 9, 9);
+    PImage wall_left_down = graphics.get(0, 0, 9, 9);
+    PImage wall_left_right = graphics.get(0, 0, 9, 9);
+    PImage wall_up_right = graphics.get(0, 0, 9, 9);
+    PImage wall_ = graphics.get(0, 0, 9, 9);
+    PImage empty = graphics.get(0, 40, 9, 9);
     background = createImage(tiles_wide * 9, tiles_tall * 9, RGB);
     background.loadPixels();
     for (int x = 0; x < tiles_wide; x++) {
