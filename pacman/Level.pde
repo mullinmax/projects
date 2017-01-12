@@ -35,21 +35,19 @@ class level {
       }
     }
     if (graphics == null) {
-      graphics = loadImage("graphics.png");
+      graphics = loadImage("graphics_test.png");
     }
-    scale = width / tiles_wide;
-    PImage wall_img = graphics.get(196, 77, 12, 12);
-    PImage empty_img = graphics.get(6, 6, 12, 12);
-    wall_img.resize(scale, scale);
-    empty_img.resize(scale, scale);
-    background = createImage(width, height, RGB);
+    scale = 40;//width / tiles_wide;
+    PImage wall_img = graphics.get(0, 0, 9, 9);
+    PImage empty_img = graphics.get(10, 10, 9, 9);
+    background = createImage(tiles_wide * 9, tiles_tall * 9, RGB);
     background.loadPixels();
     for (int x = 0; x < tiles_wide; x++) {
       for (int y = 0; y < tiles_tall; y++) {
         if (is_wall[(y * tiles_wide)+x]) {
-          background.set(x*scale, y*scale, wall_img);
+          background.set(x*9, y*9, wall_img);
         } else {
-          background.set(x*scale, y*scale, empty_img);
+          background.set(x*9, y*9, empty_img);
         }
       }
     }
