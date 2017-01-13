@@ -57,6 +57,9 @@ class level {
     PImage wall_T_down = rotateImage_CW(wall_T_right);
     PImage wall_T_left = rotateImage_CW(wall_T_down);
 
+//all
+//none
+
     PImage empty = graphics.get(0, 40, 9, 9);
 
     background = createImage(tiles_wide * 9, tiles_tall * 9, RGB);
@@ -65,16 +68,66 @@ class level {
       for (int y = 0; y < tiles_tall; y++) {
         if (is_wall[x][y]) {
           if (y > 0 && is_wall[x][y-1]) {
-            if(y < tiles_tall && is_wall[x][y+1]){
-             //up down 
-            }else{
-              //up not down
+            if (y < tiles_tall - 1 && is_wall[x][y+1]) {
+              if (x < tiles_wide - 1 && is_wall[x+1][y]) {
+                if (x > 0 && is_wall[x-1][y]) {
+                  //up down right left 
+                  //background.set(x*9, y*9, wall_all);
+                } else {//up down right not left
+                }
+              } else {
+                if (x > 0 && is_wall[x-1][y]) {
+                  //up down not right left
+                } else {
+                  //up down not right not left
+                  background.set(x*9, y*9, wall_up_down);
+                }
+              }
+            } else {
+              if (x < tiles_wide - 1 && is_wall[x+1][y]) {
+                if (x > 0 && is_wall[x-1][y]) {
+                  //up not down right
+                } else {
+                  //up not down right
+                }
+              } else {
+                if (x > 0 && is_wall[x-1][y]) {
+                  //up not down not right
+                } else {
+                  //up not down not right
+                }
+              }
             }
           } else {
-            if(y < tiles_tall && is_wall[x][y+1]){
-             //not up down 
-            }else{
-              //not up not down
+            if (y < tiles_tall - 1 && is_wall[x][y+1]) {
+              if (x < tiles_wide - 1 && is_wall[x+1][y]) {
+                if (x > 0 && is_wall[x-1][y]) {
+                  //not up down right
+                } else {
+                  //not up down right
+                }
+              } else {
+                if (x > 0 && is_wall[x-1][y]) {
+                  //not up down not right
+                } else {
+                  //not up down not right
+                }
+              }
+            } else {
+              if (x < tiles_wide -1 && is_wall[x+1][y]) {
+                if (x > 0 && is_wall[x-1][y]) {
+                  //not up not down right
+                } else {
+                  //not up not down right
+                }
+              } else {
+                if (x > 0 && is_wall[x-1][y]) {
+                  //not up not down not right left
+                  background.set(x*9, y*9, wall_end_up);
+                } else {
+                  //not up not down not right
+                }
+              }
             }
           }
 
