@@ -24,6 +24,7 @@ class level {
     saveStrings(file, level_data);
   }
   void render_level() {
+    println("rendering");
     is_wall = new boolean[tiles_wide][tiles_tall];
     for (int x = 0; x < tiles_wide; x++) {
       for (int y = 0; y < tiles_tall; y++) {
@@ -155,7 +156,15 @@ class level {
     background(0);
     image(background, 0, 0, width, height);
   }
-
+  void add_wall(int x_p, int y_p) {
+    int x = x_p/(width / tiles_wide * 1.0);//goes out oof bounds on edges
+    int y = y_p/(height / tiles_tall * 1.0);
+    is_wall[x][y] = true;
+    println("adding wall: " + x + ", " + y);
+    render_level();
+  }
+  void remove_wall() {
+  }
   void print_level() {
     println(tiles_wide);
     println(tiles_tall);
