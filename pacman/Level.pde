@@ -40,25 +40,26 @@ class level {
     graphics = loadImage("graphics_test.png");
     scale = 40;//width / tiles_wide;
     PImage wall_left_down = graphics.get(0, 20, 9, 9);
-    PImage wall_left_up = rotateImage_CW(wall_left_down);
-    PImage wall_right_down = rotateImage_CW(wall_left_up);
-    PImage wall_right_up = rotateImage_CW(wall_right_down);
+    PImage wall_right_down = rotateImage_CC(wall_left_down);
+    PImage wall_right_up = rotateImage_CC(wall_right_down);
+    PImage wall_left_up = rotateImage_CC(wall_right_up);
 
     PImage wall_up_down = graphics.get(10, 30, 9, 9);
-    PImage wall_left_right = rotateImage_CW(wall_up_down);
+    PImage wall_left_right = rotateImage_CC(wall_up_down);
 
     PImage wall_end_up = graphics.get(10, 20, 9, 9);
-    PImage wall_end_right = rotateImage_CW(wall_end_up);
-    PImage wall_end_down = rotateImage_CW(wall_end_right);
-    PImage wall_end_left = rotateImage_CW(wall_end_down);
+    PImage wall_end_left = rotateImage_CC(wall_end_up);
+    PImage wall_end_down = rotateImage_CC(wall_end_left);
+    PImage wall_end_right = rotateImage_CC(wall_end_down);
 
     PImage wall_T_up = graphics.get(20, 20, 9, 9);
-    PImage wall_T_right = rotateImage_CW(wall_T_up);
-    PImage wall_T_down = rotateImage_CW(wall_T_right);
-    PImage wall_T_left = rotateImage_CW(wall_T_down);
+    PImage wall_T_left = rotateImage_CC(wall_T_up);
+    PImage wall_T_down = rotateImage_CC(wall_T_left);
+    PImage wall_T_right = rotateImage_CC(wall_T_down);
 
-//all
-//none
+    PImage wall_all = graphics.get(20, 30, 9, 9);
+
+    PImage wall_none = graphics.get(0, 30, 9, 9);
 
     PImage empty = graphics.get(0, 40, 9, 9);
 
@@ -72,12 +73,14 @@ class level {
               if (x < tiles_wide - 1 && is_wall[x+1][y]) {
                 if (x > 0 && is_wall[x-1][y]) {
                   //up down right left 
-                  //background.set(x*9, y*9, wall_all);
+                  background.set(x*9, y*9, wall_all);
                 } else {//up down right not left
+                  background.set(x*9, y*9, wall_T_right);
                 }
               } else {
                 if (x > 0 && is_wall[x-1][y]) {
                   //up down not right left
+                  background.set(x*9, y*9, wall_T_left);
                 } else {
                   //up down not right not left
                   background.set(x*9, y*9, wall_up_down);
@@ -86,15 +89,19 @@ class level {
             } else {
               if (x < tiles_wide - 1 && is_wall[x+1][y]) {
                 if (x > 0 && is_wall[x-1][y]) {
-                  //up not down right
+                  //up not down right left
+                  background.set(x*9, y*9, wall_T_up);
                 } else {
-                  //up not down right
+                  //up not down right not left
+                  background.set(x*9, y*9, wall_right_up);
                 }
               } else {
                 if (x > 0 && is_wall[x-1][y]) {
-                  //up not down not right
+                  //up not down not right left
+                  background.set(x*9, y*9, wall_left_up);
                 } else {
-                  //up not down not right
+                  //up not down not right not left
+                  background.set(x*9, y*9, wall_end_up);
                 }
               }
             }
@@ -102,36 +109,41 @@ class level {
             if (y < tiles_tall - 1 && is_wall[x][y+1]) {
               if (x < tiles_wide - 1 && is_wall[x+1][y]) {
                 if (x > 0 && is_wall[x-1][y]) {
-                  //not up down right
+                  //not up down right left
+                  background.set(x*9, y*9, wall_T_down);
                 } else {
-                  //not up down right
+                  //not up down right not left
+                  background.set(x*9, y*9, wall_right_down);
                 }
               } else {
                 if (x > 0 && is_wall[x-1][y]) {
-                  //not up down not right
+                  //not up down not right left
+                  background.set(x*9, y*9, wall_left_down);
                 } else {
-                  //not up down not right
+                  //not up down not right not left
+                  background.set(x*9, y*9, wall_end_down);
                 }
               }
             } else {
               if (x < tiles_wide -1 && is_wall[x+1][y]) {
                 if (x > 0 && is_wall[x-1][y]) {
-                  //not up not down right
+                  //not up not down right left
+                  background.set(x*9, y*9, wall_left_right);
                 } else {
-                  //not up not down right
+                  //not up not down right not left
+                  background.set(x*9, y*9, wall_end_right);
                 }
               } else {
                 if (x > 0 && is_wall[x-1][y]) {
                   //not up not down not right left
-                  background.set(x*9, y*9, wall_end_up);
+                  background.set(x*9, y*9, wall_end_left);
                 } else {
-                  //not up not down not right
+                  //not up not down not right not left
+                  background.set(x*9, y*9, wall_none);
                 }
               }
             }
           }
-
-          //background.set(x*9, y*9, wall_left_down);
         } else {
           background.set(x*9, y*9, empty);
         }
