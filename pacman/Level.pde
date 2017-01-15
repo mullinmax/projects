@@ -1,7 +1,4 @@
-
-
 class level {
-
   int tiles_wide;
   int tiles_tall;
   boolean [][] is_wall;
@@ -45,7 +42,7 @@ class level {
       }
     }
     graphics = loadImage("graphics_test.png");
-    scale = width / tiles_wide;
+    scale = min(width / tiles_wide, height / tiles_tall);
     wall_left_down = graphics.get(0, 20, 9, 9);
     wall_right_down = rotateImage_CC(wall_left_down);
     wall_right_up = rotateImage_CC(wall_right_down);
@@ -78,11 +75,6 @@ class level {
     saveStrings(file, level_data);
   }
   void render_level() {
-    println("rendering");
-
-
-
-
     background = createImage(tiles_wide * 9, tiles_tall * 9, RGB);
     background.loadPixels();
     for (int x = 0; x < tiles_wide; x++) {
@@ -173,20 +165,45 @@ class level {
   }
   void draw_level() {
     background(50);
-    image(background, 0, 0, width, height);
+    imageMode(CENTER);
+    image(background, width / 2, height / 2, background.width * scale / 9, background.height * scale / 9);
+    imageMode(CORNER);
   }
   void add_wall(int x_p, int y_p) {
-    int x = int((x_p/(width * 1.0 / tiles_wide * 1.0)));//goes out oof bounds on edges
-    int y = int((y_p/(height * 1.0 / tiles_tall * 1.0)));
+    float x_beg = (width/2.0)-(background.width * scale / 18.0);
+    float y_beg = (height/2.0)-(background.height * scale / 18.0);
+    float x_end = width - x_beg;
+    float y_end = height - y_beg;
+    if (x_p < x_beg || x_p > x_end || y_p < y_beg || y_p > y_end) {
+      return;
+    }
+    x_p = int(map(x_p, x_beg, x_end, 0, tiles_wide));
+    y_p = int(map(y_p, y_beg, y_end, 0, tiles_tall));
+    int x = x_p;
+    int y = y_p;
     if (x >= tiles_wide || y >= tiles_tall ||x < 0||y < 0) {
       return;
     }
-    println("x_p: " + x_p + " y_p" + y_p);
-    println("adding wall: " + x + ", " + y);
     is_wall[x][y] = true;
     render_level();
   }
-  void remove_wall() {
+  void remove_wall(int x_p, int y_p) {
+    float x_beg = (width/2.0)-(background.width * scale / 18.0);
+    float y_beg = (height/2.0)-(background.height * scale / 18.0);
+    float x_end = width - x_beg;
+    float y_end = height - y_beg;
+    if (x_p < x_beg || x_p > x_end || y_p < y_beg || y_p > y_end) {
+      return;
+    }
+    x_p = int(map(x_p, x_beg, x_end, 0, tiles_wide));
+    y_p = int(map(y_p, y_beg, y_end, 0, tiles_tall));
+    int x = x_p;
+    int y = y_p;
+    if (x >= tiles_wide || y >= tiles_tall ||x < 0||y < 0) {
+      return;
+    }
+    is_wall[x][y] = false;
+    render_level();
   }
   void print_level() {
     println(tiles_wide);

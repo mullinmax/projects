@@ -3,7 +3,7 @@ level field = new level();
 
 
 void setup() {
-  size(1000, 1000);
+  size(900, 900);
   smooth(0);
   field.load_level("test_level.txt");
   //field.print_level();
@@ -21,10 +21,9 @@ void mousePressed()
 {
   if (mouseButton == LEFT) {
     field.add_wall(mouseX, mouseY);
-    println("!!!!!");
   }
   if (mouseButton == RIGHT) {
-    //field.remove_wall(mouseX, mouseY);
+    field.remove_wall(mouseX, mouseY);
   }
 }
 
@@ -32,9 +31,8 @@ void mouseDragged()
 {
   if (mouseButton == LEFT) {
     field.add_wall(mouseX, mouseY);
-    println("!!!!!");
   }
   if (mouseButton == RIGHT) {
-    //field.remove_wall(mouseX, mouseY);
+    field.remove_wall(mouseX, mouseY);
   }
 }
