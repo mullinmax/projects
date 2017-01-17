@@ -2,7 +2,7 @@ class level {
   int tiles_wide;
   int tiles_tall;
   boolean [][] is_wall;
-  String tiles;
+  char [][] tiles;
   PImage background;
   PImage graphics;
   int scale;
@@ -23,20 +23,25 @@ class level {
   PImage wall_all;
   PImage wall_none;
   PImage empty;
+  PImage erase;
   void load_level(String file) {
     String [] level_data = loadStrings(file);
     level_data = split(level_data[0], ' ');
     tiles_wide = int(level_data[0]);
     tiles_tall = int(level_data[1]);
-    tiles = level_data[2];
+    tiles = new char[tiles_wide][tiles_tall];
+    println(tiles_wide, tiles_tall);
+    String tile_string = level_data[2];
+    println(tile_string.length());
     is_wall = new boolean[tiles_wide][tiles_tall];
     for (int x = 0; x < tiles_wide; x++) {
       for (int y = 0; y < tiles_tall; y++) {
         int col = x;
         int row = y * tiles_wide;
-        if (tiles.charAt(col+row) == 'W') {
+        //tiles[x][y] = tile_string.charAt(col+row);
+        if (tile_string.charAt(col+row) == 'W') {
           is_wall[x][y] = true;
-        } else if (tiles.charAt(col+row) == 'E') {
+        } else if (tile_string.charAt(col+row) == 'E') {
           is_wall[x][y] = false;
         }
       }
@@ -66,11 +71,25 @@ class level {
     wall_none = graphics.get(0, 30, 9, 9);
 
     empty = graphics.get(0, 40, 9, 9);
+
+    erase = graphics.get(20, 40, 9, 9);
   }
   void save_level(String file) {
     String [] level_data = new String[1];
     level_data[0] = tiles_wide + " ";
     level_data[0] += tiles_tall + " ";
+    for (int x = 0; x < tiles_wide; x++) {
+      for (int y = 0; y < tiles_tall; y++) {
+        if (tiles[x][y] == 'W') {
+          if (!is_wall[x][y]) {
+            tiles[x][y] = 'E';
+          }
+        } else if (is_wall[x][y]) {
+          tiles[x][y] = 'W';
+        }
+      }
+    }
+    //add in otherthings like start pos and jail to string
     level_data[0] += tiles; 
     saveStrings(file, level_data);
   }
@@ -161,10 +180,17 @@ class level {
         }
       }
     }
+    for (int x = 0; x < tiles_wide - 1; x++) {
+      for (int y = 0; y < tiles_tall - 1; y++) {
+        if (is_wall[x][y] && is_wall[x+1][y] && is_wall[x][y+1] && is_wall[x+1][y+1]) {
+          background.set(x*9+5, y*9+5, erase);
+        }
+      }
+    }
     background.updatePixels();
   }
   void draw_level() {
-    background(50);
+    background(0);
     imageMode(CENTER);
     image(background, width / 2, height / 2, background.width * scale / 9, background.height * scale / 9);
     imageMode(CORNER);
