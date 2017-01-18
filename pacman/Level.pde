@@ -87,10 +87,10 @@ class level {
         } else if (is_wall[x][y]) {
           tiles[x][y] = 'W';
         }
+        level_data[0] += tiles[x][y];
       }
     }
     //add in otherthings like start pos and jail to string
-    level_data[0] += tiles; 
     saveStrings(file, level_data);
   }
   void render_level() {
@@ -234,6 +234,6 @@ class level {
   void print_level() {
     println(tiles_wide);
     println(tiles_tall);
-    println(tiles);
+    println("-"+tiles+"-");
   }
 }
