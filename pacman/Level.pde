@@ -29,16 +29,18 @@ class level {
     level_data = split(level_data[0], ' ');
     tiles_wide = int(level_data[0]);
     tiles_tall = int(level_data[1]);
+    println(tiles_wide + ", " + tiles_tall);
     tiles = new char[tiles_wide][tiles_tall];
-    println(tiles_wide, tiles_tall);
     String tile_string = level_data[2];
-    println(tile_string.length());
     is_wall = new boolean[tiles_wide][tiles_tall];
-    for (int x = 0; x < tiles_wide; x++) {
-      for (int y = 0; y < tiles_tall; y++) {
+    for (int y = 0; y < tiles_tall; y++) {
+      for (int x = 0; x < tiles_wide; x++) {
         int col = x;
         int row = y * tiles_wide;
-        //tiles[x][y] = tile_string.charAt(col+row);
+        //try{
+        tiles[x][y] = tile_string.charAt(col+row);
+        //}catch(ArrayIndexOutOfBoundsException e){
+        //}
         if (tile_string.charAt(col+row) == 'W') {
           is_wall[x][y] = true;
         } else if (tile_string.charAt(col+row) == 'E') {
@@ -78,8 +80,8 @@ class level {
     String [] level_data = new String[1];
     level_data[0] = tiles_wide + " ";
     level_data[0] += tiles_tall + " ";
-    for (int x = 0; x < tiles_wide; x++) {
-      for (int y = 0; y < tiles_tall; y++) {
+    for (int y = 0; y < tiles_tall; y++) {
+      for (int x = 0; x < tiles_wide; x++) {
         if (tiles[x][y] == 'W') {
           if (!is_wall[x][y]) {
             tiles[x][y] = 'E';
@@ -234,6 +236,11 @@ class level {
   void print_level() {
     println(tiles_wide);
     println(tiles_tall);
-    println("-"+tiles+"-");
+    for (int x = 0; x < tiles_wide; x++) {
+      for (int y = 0; y < tiles_tall; y++) {
+        print(tiles[x][y]);
+      }
+    }
+    print("/n");
   }
 }
