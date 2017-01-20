@@ -7,7 +7,7 @@ void setup() {
   smooth(0);
   field.load_level("data/test_level.txt");
   //field.print_level();
-  field.save_level("data/test_level.txt");
+  //field.save_level("data/test_level.txt");
   field.render_level();
 }
 
