@@ -23,8 +23,8 @@ String hol[];
 
 int text_size = 20;
 public void setup() {
+  //size(1024, 600);
   
-  //fullScreen();
   noCursor();
   textAlign(CENTER);
   get_weather();
@@ -132,7 +132,7 @@ public void date(float x, float y) {
 XML xml;
 int previous_update;
 String server = "http://query.yahooapis.com/v1/public/yql?format=xml&q=select+*+from+weather.forecast+where+woeid=";
-String location = "2356937+and+u='F'"; // newcastle upon type in F
+String location = "2356937+and+u='F'";
 String city;
 String region;
 String sunrise;
@@ -197,13 +197,11 @@ public void get_weather() {
         }
       }
     }
-  }
-  catch(NullPointerException e) {
+  }catch(NullPointerException e) {
     text("NO INTERNET", 150, small_size);
   }
 }
-
-  public void settings() {  size(1024, 600); }
+  public void settings() {  fullScreen(); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--hide-stop", "smart_mirror" };
     if (passedArgs != null) {
