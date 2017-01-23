@@ -6,4 +6,8 @@ mm hh dd wd mm yyyy rrr ggg bbb fontname message
 ** ** 24 ** 12 **** 255 255 255 fncy.ttf Christmas eve
 ** ** 25 ** 12 **** 255 255 255 fncy.ttf Merry Christmas!
 ** ** 02 ** 02 **** 255 255 255 fncy.ttf Happy Birthday!
-
+** ** 14 ** 02 **** 240 155 155 fncy.ttf Happy Valentine's Day
+** 15 14 ** 03 **** 255 255 255 fncy.ttf Pi Hour!
+** ** 14 ** 03 **** 255 255 255 fncy.ttf Pi Day!
+** ** 20 ** 03 **** 255 255 255 fncy.ttf Spring Equinox
+** ** 21 ** 03 **** 255 255 255 fncy.ttf Max's Birthday!
