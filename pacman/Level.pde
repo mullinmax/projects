@@ -8,7 +8,7 @@ class level {
   PImage background;
   PImage graphics;
   int scale;
-  int o_size = 9;
+  int o_size = 27;
   PImage wall_left_down;
   PImage wall_right_down;
   PImage wall_right_up;
@@ -198,13 +198,13 @@ class level {
         }
       }
     }
-    for (int x = 0; x < o_size; x++) {
-      for (int y = 0; y < o_size; y++) {
-        background.set(x*o_size, y_o_size, )//player image
-      }
-    }
-    for () {
-    }
+   // for (int x = 0; x < o_size; x++) {
+   //   for (int y = 0; y < o_size; y++) {
+   //     background.set(x*o_size, y_o_size, )//player image
+   //   }
+   // }
+   // for () {
+   // }
     background.updatePixels();
   }
   void draw_level() {
