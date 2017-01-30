@@ -2,6 +2,8 @@ class level {
   int tiles_wide;
   int tiles_tall;
   boolean [][] is_wall;
+  PVector player_start;
+  PVector jail;
   char [][] tiles;
   PImage background;
   PImage graphics;
@@ -42,7 +44,13 @@ class level {
         tiles[x][y] = tile_string.charAt(col+row);
         //}catch(ArrayIndexOutOfBoundsException e){
         //}
-        if (tile_string.charAt(col+row) == 'W') {
+        if (tile_string.charAt(col+row) == 'J') {
+          jail = new PVector(x, y);
+          is_wall[x][y] = false;
+        } else if (tile_string.charAt(col+row) == 'P') {
+          player_start = new PVector(x, y);
+          is_wall[x][y] = false;
+        } else if (tile_string.charAt(col+row) == 'W') {
           is_wall[x][y] = true;
         } else if (tile_string.charAt(col+row) == 'E') {
           is_wall[x][y] = false;
@@ -183,12 +191,19 @@ class level {
         }
       }
     }
-    for (int x = 0; x < tiles_wide - 1; x++) {
+    for (int x = 0; x < tiles_wide - 1; x++) {  //over wrrites corners on interior walls
       for (int y = 0; y < tiles_tall - 1; y++) {
         if (is_wall[x][y] && is_wall[x+1][y] && is_wall[x][y+1] && is_wall[x+1][y+1]) {
           background.set(x*o_size+5, y*o_size+5, erase);
         }
       }
+    }
+    for (int x = 0; x < o_size; x++) {
+      for (int y = 0; y < o_size; y++) {
+        background.set(x*o_size, y_o_size, )//player image
+      }
+    }
+    for () {
     }
     background.updatePixels();
   }

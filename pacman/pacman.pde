@@ -13,7 +13,7 @@ void setup() {
 
 void draw() {
   field.draw_level();
-  field.save_level("data/test_level.txt");
+  //field.save_level("data/test_level.txt");
 }
 
 void mousePressed() 
@@ -33,5 +33,12 @@ void mouseDragged()
   }
   if (mouseButton == RIGHT) {
     field.remove_wall(mouseX, mouseY);
+  }
+}
+
+void keyPressed(){
+  if(keyCode == 'J'){
+  }
+  if(keyCode == 'P'){
   }
 }
