@@ -1,4 +1,3 @@
-//level field = new level();
 game pacman;
 
 
@@ -11,8 +10,6 @@ void setup() {
 void draw() {
   pacman.update();
   pacman.display();
-  //field.draw_level();
-  //field.save_level("data/test_level.txt");
 }
 
 void mousePressed() {
