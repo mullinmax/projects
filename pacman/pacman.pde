@@ -1,44 +1,28 @@
-level field = new level();
-
+//level field = new level();
+game pacman;
 
 
 void setup() {
+  //fullScreen();
   size(900, 900);
-  smooth(0);
-  field.load_level("data/test_level.txt");
-  //field.print_level();
-  //field.save_level("data/test_level.txt");
-  field.render_level();
+  pacman = new game();
 }
 
 void draw() {
-  field.draw_level();
+  pacman.update();
+  pacman.display();
+  //field.draw_level();
   //field.save_level("data/test_level.txt");
 }
 
-void mousePressed() 
-{
-  if (mouseButton == LEFT) {
-    field.add_wall(mouseX, mouseY);
-  }
-  if (mouseButton == RIGHT) {
-    field.remove_wall(mouseX, mouseY);
-  }
+void mousePressed() {
+  pacman.click();
 }
 
-void mouseDragged() 
-{
-  if (mouseButton == LEFT) {
-    field.add_wall(mouseX, mouseY);
-  }
-  if (mouseButton == RIGHT) {
-    field.remove_wall(mouseX, mouseY);
-  }
+void mouseDragged() {
+  pacman.click();
 }
 
-void keyPressed(){
-  if(keyCode == 'J'){
-  }
-  if(keyCode == 'P'){
-  }
+void keyPressed() {
+  pacman.key();
 }

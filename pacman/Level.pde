@@ -9,6 +9,7 @@ class level {
   PImage graphics;
   int scale;
   int o_size = 27;
+  int tile_dist = o_size + 3;
   PImage wall_left_down;
   PImage wall_right_down;
   PImage wall_right_up;
@@ -59,31 +60,31 @@ class level {
     }
     graphics = loadImage("graphics_test.png");
     scale = min(width / tiles_wide, height / tiles_tall);
-    wall_left_down = graphics.get(0, 20, o_size, o_size);
+    wall_left_down = graphics.get(0, 2*tile_dist, o_size, o_size);
     wall_right_down = rotateImage_CC(wall_left_down);
     wall_right_up = rotateImage_CC(wall_right_down);
     wall_left_up = rotateImage_CC(wall_right_up);
 
-    wall_up_down = graphics.get(10, 30, o_size, o_size);
+    wall_up_down = graphics.get(1*tile_dist, 3*tile_dist, o_size, o_size);
     wall_left_right = rotateImage_CC(wall_up_down);
 
-    wall_end_up = graphics.get(10, 20, o_size, o_size);
+    wall_end_up = graphics.get(1*tile_dist, 2*tile_dist, o_size, o_size);
     wall_end_left = rotateImage_CC(wall_end_up);
     wall_end_down = rotateImage_CC(wall_end_left);
     wall_end_right = rotateImage_CC(wall_end_down);
 
-    wall_T_up = graphics.get(20, 20, o_size, o_size);
+    wall_T_up = graphics.get(2*tile_dist, 2*tile_dist, o_size, o_size);
     wall_T_left = rotateImage_CC(wall_T_up);
     wall_T_down = rotateImage_CC(wall_T_left);
     wall_T_right = rotateImage_CC(wall_T_down);
 
-    wall_all = graphics.get(20, 30, o_size, o_size);
+    wall_all = graphics.get(2*tile_dist, 3*tile_dist, o_size, o_size);
 
-    wall_none = graphics.get(0, 30, o_size, o_size);
+    wall_none = graphics.get(0, 3*tile_dist, o_size, o_size);
 
-    empty = graphics.get(0, 40, o_size, o_size);
+    empty = graphics.get(0, 4*tile_dist, o_size, o_size);
 
-    erase = graphics.get(20, 40, o_size, o_size);
+    erase = graphics.get(2*tile_dist, 4*tile_dist, o_size, o_size);
   }
   void save_level(String file) {
     String [] level_data = new String[1];
@@ -194,17 +195,10 @@ class level {
     for (int x = 0; x < tiles_wide - 1; x++) {  //over wrrites corners on interior walls
       for (int y = 0; y < tiles_tall - 1; y++) {
         if (is_wall[x][y] && is_wall[x+1][y] && is_wall[x][y+1] && is_wall[x+1][y+1]) {
-          background.set(x*o_size+5, y*o_size+5, erase);
+          background.set(x*o_size+o_size/2, y*o_size+o_size/2, erase);
         }
       }
     }
-   // for (int x = 0; x < o_size; x++) {
-   //   for (int y = 0; y < o_size; y++) {
-   //     background.set(x*o_size, y_o_size, )//player image
-   //   }
-   // }
-   // for () {
-   // }
     background.updatePixels();
   }
   void draw_level() {
@@ -214,8 +208,8 @@ class level {
     imageMode(CORNER);
   }
   void add_wall(int x_p, int y_p) {
-    float x_beg = (width/2.0)-(background.width * scale / 18.0);
-    float y_beg = (height/2.0)-(background.height * scale / 18.0);
+    float x_beg = (width/2.0)-(background.width * scale / (2*o_size));
+    float y_beg = (height/2.0)-(background.height * scale / (2*o_size));
     float x_end = width - x_beg;
     float y_end = height - y_beg;
     if (x_p < x_beg || x_p > x_end || y_p < y_beg || y_p > y_end) {
@@ -232,8 +226,8 @@ class level {
     render_level();
   }
   void remove_wall(int x_p, int y_p) {
-    float x_beg = (width/2.0)-(background.width * scale / 18.0);
-    float y_beg = (height/2.0)-(background.height * scale / 18.0);
+    float x_beg = (width/2.0)-(background.width * scale / (2*o_size));
+    float y_beg = (height/2.0)-(background.height * scale / (2*o_size));
     float x_end = width - x_beg;
     float y_end = height - y_beg;
     if (x_p < x_beg || x_p > x_end || y_p < y_beg || y_p > y_end) {
