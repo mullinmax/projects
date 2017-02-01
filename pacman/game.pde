@@ -11,11 +11,13 @@ class game {
     field = new level();
     field.load_level("data/test_level.txt");
     field.render_level();
+    pacman = new player(field.player_start, field.scale);
   }
   void update() {
   }
   void display() {
     field.draw_level();
+    pacman.display(field.origin);
   }
 
   void click() {

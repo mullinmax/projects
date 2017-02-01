@@ -2,9 +2,10 @@ class level {
   int tiles_wide;
   int tiles_tall;
   boolean [][] is_wall;
-  PVector player_start;
+  PVector player_start = new PVector();
   PVector jail;
   char [][] tiles;
+  PVector origin = new PVector();
   PImage background;
   PImage graphics;
   int scale;
@@ -107,6 +108,7 @@ class level {
   }
   void render_level() {
     background = createImage(tiles_wide * o_size, tiles_tall * o_size, RGB);
+    origin = new PVector((width / 2) - (background.width * scale / (2*o_size)), (height/2)-(background.height * scale / (2*o_size)));
     background.loadPixels();
     for (int x = 0; x < tiles_wide; x++) {
       for (int y = 0; y < tiles_tall; y++) {
