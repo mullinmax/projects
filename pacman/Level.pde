@@ -2,7 +2,7 @@ class level {
   int tiles_wide;
   int tiles_tall;
   boolean [][] is_wall;
-  PVector player_start = new PVector();
+  PVector player_start;
   PVector jail;
   char [][] tiles;
   PVector origin = new PVector();
@@ -209,41 +209,70 @@ class level {
     image(background, width / 2, height / 2, background.width * scale / o_size, background.height * scale / o_size);
     imageMode(CORNER);
   }
-  void add_wall(int x_p, int y_p) {
+  PVector get_mouse_tile() {
+    int x_p = mouseX;
+    int y_p = mouseY;
     float x_beg = (width/2.0)-(background.width * scale / (2*o_size));
     float y_beg = (height/2.0)-(background.height * scale / (2*o_size));
     float x_end = width - x_beg;
     float y_end = height - y_beg;
     if (x_p < x_beg || x_p > x_end || y_p < y_beg || y_p > y_end) {
-      return;
+      return new PVector(-1, -1);
     }
     x_p = int(map(x_p, x_beg, x_end, 0, tiles_wide));
     y_p = int(map(y_p, y_beg, y_end, 0, tiles_tall));
     int x = x_p;
     int y = y_p;
     if (x >= tiles_wide || y >= tiles_tall ||x < 0||y < 0) {
-      return;
+      return new PVector(-1, -1);
     }
-    is_wall[x][y] = true;
-    render_level();
+    return new PVector(x, y);
   }
-  void remove_wall(int x_p, int y_p) {
-    float x_beg = (width/2.0)-(background.width * scale / (2*o_size));
-    float y_beg = (height/2.0)-(background.height * scale / (2*o_size));
-    float x_end = width - x_beg;
-    float y_end = height - y_beg;
-    if (x_p < x_beg || x_p > x_end || y_p < y_beg || y_p > y_end) {
+  void add_wall() {
+    PVector tile = get_mouse_tile();
+    if (tile.x == -1) {
       return;
+    } else {
+      is_wall[int(tile.x)][int(tile.y)] = true;
+      render_level();
     }
-    x_p = int(map(x_p, x_beg, x_end, 0, tiles_wide));
-    y_p = int(map(y_p, y_beg, y_end, 0, tiles_tall));
-    int x = x_p;
-    int y = y_p;
-    if (x >= tiles_wide || y >= tiles_tall ||x < 0||y < 0) {
+  }
+  void remove_wall() {
+    PVector tile = get_mouse_tile();
+    if (tile.x == -1) {
       return;
+    } else {
+      is_wall[int(tile.x)][int(tile.y)] = false;
+      render_level();
     }
-    is_wall[x][y] = false;
-    render_level();
+  }
+  void set_jail() {
+    PVector tile = get_mouse_tile();
+    if (tile.x == -1) {
+      return;
+    } else {
+      tiles[int(tile.x)][int(tile.y)] = 'J';
+      render_level();
+    }
+  }
+  void set_player_start() {
+    println("!!");
+    for (int x = 0; x < tiles_wide - 1; x++) {  //over wrrites corners on interior walls
+      for (int y = 0; y < tiles_tall - 1; y++) {
+        if (tiles[x][y] == 'P') {
+          tiles[x][y] = 'E';
+        }
+      }
+    }
+    PVector tile = get_mouse_tile();
+    if (tile.x == -1) {
+      return;
+    } else {
+      player_start = new PVector(int(tile.x), int(tile.y));
+      tiles[int(tile.x)][int(tile.y)] = 'P';
+      render_level();
+      print(player_start);
+    }
   }
   void print_level() {
     println(tiles_wide);
@@ -253,6 +282,6 @@ class level {
         print(tiles[x][y]);
       }
     }
-    print("/n");
+    println();
   }
 }
