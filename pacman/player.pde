@@ -1,10 +1,14 @@
 class player {
   PImage [] frames;
   int tile_size = 27;
+  int field_tile_size;
   int tile_buff = 3;
   PVector pos;
   float size;
-  player(PVector player_start, float scale) {
+  player(PVector player_start,int o_size, int scale) {
+    field_tile_size = o_size * scale;
+    println(o_size);
+    println(scale);
     pos = new PVector(player_start.x, player_start.y);
     size = scale;
     PImage temp = loadImage("graphics_test.png");
@@ -16,6 +20,6 @@ class player {
   void update() {
   }
   void display(PVector org) {
-    image(frames[0], (pos.x*tile_size)+org.x, (pos.y*tile_size)+org.y, size, size);
+    image(frames[0], tile_size+org.x, tile_size+org.y, size, size);
   }
 }
