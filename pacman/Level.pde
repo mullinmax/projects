@@ -257,7 +257,7 @@ class level {
   }
   void set_player_start() {
     println("!!");
-    for (int x = 0; x < tiles_wide - 1; x++) {  //over wrrites corners on interior walls
+    for (int x = 0; x < tiles_wide - 1; x++) {  
       for (int y = 0; y < tiles_tall - 1; y++) {
         if (tiles[x][y] == 'P') {
           tiles[x][y] = 'E';
@@ -265,7 +265,7 @@ class level {
       }
     }
     PVector tile = get_mouse_tile();
-    if (tile.x == -1) {
+    if (tile.x == -1 || tile.y == -1) {
       return;
     } else {
       player_start = new PVector(int(tile.x), int(tile.y));

@@ -11,7 +11,7 @@ class game {
     field = new level();
     field.load_level("data/with_player.txt");
     field.render_level();
-    pacman = new player(field.player_start, field.scale);
+    pacman = new player(field.player_start, field.o_size, field.scale);
     //pacman = new player(new PVector(10, 10), field.scale);
   }
   void update() {
@@ -32,11 +32,13 @@ class game {
   }
 
   void key() {
-    if (keyCode == 'J') {
+    if (key == 'j') {
       field.set_jail();
     }
-    if (keyCode == 'P') {
+    if (key == 'p') {
+      println("@@@");
       field.set_player_start();
+      pacman.pos = field.player_start;
     }
   }
 }
