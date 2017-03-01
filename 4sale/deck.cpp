@@ -1,9 +1,10 @@
 #ifndef DECK
 #define DECK
-#include <random>
-#include <algorithm>
-#include <iterator>
+//include <random>
+//include <algorithm>
+//include <iterator>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -20,14 +21,17 @@ class deck{
 			for(int i = 0; i < n; ++i){
 				cards.push_back(i);
 			}
-			shuff();
+			shuffle();
 			trash(drop);
 		}
 		
-		void shuff(){
-		    random_device rd;
-		    mt19937 g(rd());
-		    shuffle(cards.begin(), cards.end(), g);
+		void shuffle(){
+		    for(unsigned int i = 0; i < cards.size(); ++i){
+				int loc = rand() % cards.size();
+				int temp = cards[i];
+				cards[i] = cards[loc];
+				cards[loc] = temp;
+			}
 		}
 
 		void print(){
@@ -77,10 +81,26 @@ class deck{
 				cards[i] = temp;
 			}
 		}
+		
+		int find(int value){
+			if(value == -1){
+				return -1;
+			}
+			for(unsigned int i = 0; i < cards.size(); ++i){
+				if(value == cards[i]){
+					return i;
+				}
+			}
+			return -1;
+		}
 
 
 		bool empty(){
 			return cards.size() == 0;
+		}
+
+		unsigned int size(){
+			return cards.size();
 		}
 	private:
 		vector<int> cards;	

@@ -1,16 +1,16 @@
 #include <iostream>
-#include <random>
+//include <random>
 #include <algorithm>
-#include <iterator>
+//include <iterator>
 #include "deck.cpp"
 #include "player.cpp"
 using namespace std;
 
 int main(){
-	int num_rounds = 15;
-	int starting_coins = 30;
+	int num_rounds = 3;
+	int starting_coins = 10;
 	int num_drop = 4;	
-	int num_players = 6;
+	int num_players = 3;
 	player players[num_players];
 	for(int i = 0 ; i < num_players; i++){
 		players[i] = player(starting_coins);
@@ -71,7 +71,7 @@ int main(){
 		table.add_cards(cash.draw(num_players));
 		table.sort();
 		for(int p = 0; p < num_players; p++){
-			bids[p] = players[p].sell_house();
+			bids[p] = players[p].sell_house(table);
 		}
 		for(int i = 0; i < num_players; i++){
 			int index_max = 0;
