@@ -42,10 +42,26 @@ class player{
 			cout << "^^^^^" << endl;
 			cout << "how much would you like to add to your bid?" << endl;
 			cin >> bid;
+			cin.clear();
+			cin.ignore();
 			return bid;
 		}
-		unsigned int sell_house(){
-			return 0;
+		unsigned int sell_house(deck table){
+			int ans = -1;			
+			while(houses.find(ans) == -1){
+				cout << "Which house would you like to sell?" << endl;
+				cout << "Market: ";
+				table.print();
+				cout << "Your houses: ";
+				houses.print();
+				cin >> ans;
+				cin.clear();
+				cin.ignore();
+				if(houses.find(ans) == -1){
+					cout << "Whoops that's not a house you have! try again." << endl;
+				}
+			}
+			return houses.find(ans);
 		}
 		void pay(int amount){
 			coins -= amount;
@@ -55,12 +71,16 @@ class player{
 		}
 		void add_house(vector<int> house){
 			houses.add_cards(house);
+			houses.sort();
+		}
+		void remove_house(unsigned int ){
+		
 		}
 		void add_cash(vector<int> money){
 			cash.add_cards(money);
 		}
 	private:
-		int coins = 0;
+		int coins;
 		deck houses;
 		deck cash;	
 };
