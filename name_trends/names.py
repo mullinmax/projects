@@ -6,11 +6,13 @@ def genorate_history_file(years, person):
 	output.write(str(total_births[i])+"\n")
 	for point in data:
 		output.write(point+"\n")
+	close(output)
+	return
 
 def total_birth_count(years, person):
 	totals = []
 	for i in range(len(years)):
-		totals.append(birth_count(years[i], person)
+		totals.append(birth_count(years[i], person))
 	return totals
 
 def birth_count(year, person):
@@ -25,7 +27,7 @@ def main():
 	for i in range(1880,2016):
 	    print("reading year " + str(i))
 	    people = []
-	    with open('yob' + str(i) + '.txt') as csvfile:
+	    with open('org_data/yob' + str(i) + '.txt') as csvfile:
 	        reader = csv.DictReader(csvfile,fieldnames=['Name', 'Gender', 'Number'])
 	        for row in reader:
 	            people.append(row)
@@ -46,10 +48,10 @@ def main():
 	#count occurnces of each and every name
 	done_names = []
 	for	y in range(len(years)):
+		print(y+1880)
 		for person in years[y]:
 			if(not (person['Name'], person['Gender']) in done_names):
 				done_names.append((person['Name'], person['Gender'])) 
-				
 				#print(person['Name'])
 			
 #count births of target name for each year    
