@@ -38,8 +38,8 @@ def main():
 	            people.append(row)
 	    years.append(people)
 
-	print(total_birth_count(years, years[0][0]))
-'''
+	
+
 	#count total number of births for each year
 	total_births = []
 	for y in range(len(years)):
@@ -61,7 +61,7 @@ def main():
 				done_names.append((person['Name'], person['Gender']))
 				genorate_history_file(years, person) 
 				#print(person['Name'])
-'''			
+			
 #count births of target name for each year    
 '''
 plot_data = []
