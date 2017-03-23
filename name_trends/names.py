@@ -1,13 +1,13 @@
 import csv
 
 def genorate_history_file(years, person):
-	output = open("history_files/" + person['Name'] + "_" + person['Gender'] + ".txt", 'w')
+	#output = open("history_files/" + person['Name'] + "_" + person['Gender'] + ".txt", 'w')
 	data = []
 	data = total_birth_count(years, person)
-	output.write(person['Name'] + person['Gender'] + "\n")
-	for i in range(len(data)):
-		output.write(str(data[i])+"\n")
-	return
+	#output.write(person['Name'] + person['Gender'] + "\n")
+	#for i in range(len(data)):
+		#output.write(str(data[i])+"\n")
+	return (person['Name'], person['Gender'], data)
 
 def total_birth_count(years, person):
 	totals = []
@@ -20,10 +20,16 @@ def total_birth_count(years, person):
 	return totals
 
 def birth_count(i, years, person):
-	year = years[i]
-	for p in year:
+	for p in years[i]:
 		if(person['Name'] == p['Name'] and person['Gender'] == p['Gender']):
+			years[i].remove(p)
 			return p['Number']
+
+def write_data(data):
+	output = open("history_files/" + str(data[0]) + "_" + str(data[1]) + ".txt", 'w')
+	output.write(data[0] + data[1] + "\n")
+	for i in range(len(data)-2):
+		output.write(str(data[i+2])+"\n")		
 
 
 #read in Name Data
@@ -53,15 +59,19 @@ def main():
 		output.write(str(1880+i)+ "," + str(total_births[i])+"\n")
 	
 	#count occurnces of each and every name
-	done_names = []
+	history_files = []
+	#done_names = []
 	for	y in range(len(years)):
 		print(y+1880)
-		for person in years[y]:
-			if(not (person['Name'], person['Gender']) in done_names):
-				done_names.append((person['Name'], person['Gender']))
-				genorate_history_file(years, person) 
+		while (len(years[y]) > 0):
+			print(len(years[y]))
+			#if(not (person['Name'], person['Gender']) in done_names):
+				#done_names.append((person['Name'], person['Gender']))
+			history_files.append(genorate_history_file(years[y:], years[y][0])) 
 				#print(person['Name'])
-			
+	for i in range(len(history_files)):
+		write_data(history_files[i])
+
 #count births of target name for each year    
 '''
 plot_data = []
