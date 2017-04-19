@@ -1,12 +1,12 @@
 import csv
 
 def genorate_history_file(years, person):
-	#output = open("history_files/" + person['Name'] + "_" + person['Gender'] + ".txt", 'w')
+	output = open("history_files/" + person['Name'] + "_" + person['Gender'] + ".txt", 'w')
 	data = []
 	data = total_birth_count(years, person)
-	#output.write(person['Name'] + person['Gender'] + "\n")
-	#for i in range(len(data)):
-		#output.write(str(data[i])+"\n")
+	output.write(person['Name'] + person['Gender'] + "\n")
+	for i in range(len(data)):
+		output.write(str(data[i])+"\n")
 	return (person['Name'], person['Gender'], data)
 
 def total_birth_count(years, person):
@@ -22,7 +22,7 @@ def total_birth_count(years, person):
 def birth_count(i, years, person):
 	for p in years[i]:
 		if(person['Name'] == p['Name'] and person['Gender'] == p['Gender']):
-			years[i].remove(p)
+			#years[i].remove(p)
 			return p['Number']
 
 def write_data(data):
@@ -59,18 +59,18 @@ def main():
 		output.write(str(1880+i)+ "," + str(total_births[i])+"\n")
 	
 	#count occurnces of each and every name
-	history_files = []
-	#done_names = []
+	#history_files = []
+	done_names = []
 	for	y in range(len(years)):
 		print(y+1880)
-		while (len(years[y]) > 0):
-			print(len(years[y]))
-			#if(not (person['Name'], person['Gender']) in done_names):
-				#done_names.append((person['Name'], person['Gender']))
-			history_files.append(genorate_history_file(years[y:], years[y][0])) 
+		for p in range(len(years[y])):
+			if(not (years[y][p]['Name'], years[y][p]['Gender']) in done_names):
+				done_names.append((years[y][p]['Name'], years[y][p]['Gender']))
+				genorate_history_file(years[y:], years[y][p])
+			#history_files.append(genorate_history_file(years[y:], years[y][0])) 
 				#print(person['Name'])
-	for i in range(len(history_files)):
-		write_data(history_files[i])
+	#for i in range(len(history_files)):
+	#	write_data(history_files[i])
 
 #count births of target name for each year    
 '''
