@@ -2,7 +2,7 @@
 
 # projects
 
-<div class="Montserrat">
+<div class="https://fonts.googleapis.com/css?family=Montserrat">
 adoiajowidj
 </div>
 
