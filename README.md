@@ -1,8 +1,12 @@
-
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 # projects
 
-<div style="font: Montserrat Semi-Bold">
+<div class=".techRex{
+      font-family:    Arial, Helvetica, sans-serif;
+      font-size:      40px;
+      font-weight:    bold;
+    }">
 adoiajowidj
 </div>
 
