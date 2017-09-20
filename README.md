@@ -2,11 +2,7 @@
 
 # projects
 
-<div class=".techRex{
-      font-family:    Arial, Helvetica, sans-serif;
-      font-size:      40px;
-      font-weight:    bold;
-    }">
+<div class="Montserrat">
 adoiajowidj
 </div>
 
