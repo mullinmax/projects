@@ -12,7 +12,7 @@ mm hh dd wd mm yyyy rrr ggg bbb fontname message
 ** ** 17 ** 03 **** 047 222 000 fncy.ttf Saint Patrick's Day
 ** ** 20 ** 03 **** 255 255 255 fncy.ttf Spring Equinox
 ** ** 21 ** 03 **** 255 255 255 fncy.ttf Max's Birthday!
-** ** 16 ** 04 2017	255 102 153 fncy.ttf Happy Easter!
+** ** 16 ** 04 2017 255 102 153 fncy.ttf Happy Easter!
 11 ** 30 ** ** 2017 255 255 255 fncy.ttf 20 PAGES!?!?
 ** ** 23 ** 12 **** 255 255 255 fncy.ttf Christmas in 2 Days!
 ** ** 22 ** 12 **** 255 255 255 fncy.ttf Christmas in 3 Days!
