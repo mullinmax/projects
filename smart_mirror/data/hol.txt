@@ -13,3 +13,27 @@ mm hh dd wd mm yyyy rrr ggg bbb fontname message
 ** ** 20 ** 03 **** 255 255 255 fncy.ttf Spring Equinox
 ** ** 21 ** 03 **** 255 255 255 fncy.ttf Max's Birthday!
 ** ** 16 ** 04 2017	255 102 153 fncy.ttf Happy Easter!
+11 ** 30 ** ** 2017 255 255 255 fncy.ttf 20 PAGES!?!?
+** ** 23 ** 12 **** 255 255 255 fncy.ttf Christmas in 2 Days!
+** ** 22 ** 12 **** 255 255 255 fncy.ttf Christmas in 3 Days!
+** ** 21 ** 12 **** 255 255 255 fncy.ttf Christmas in 4 Days!
+** ** 20 ** 12 **** 255 255 255 fncy.ttf Christmas in 5 Days!
+** ** 19 ** 12 **** 255 255 255 fncy.ttf Christmas in 6 Days!
+** ** 18 ** 12 **** 255 255 255 fncy.ttf Christmas in 7 Days!
+** ** 17 ** 12 **** 255 255 255 fncy.ttf Christmas in 8 Days!
+** ** 16 ** 12 **** 255 255 255 fncy.ttf Christmas in 9 Days!
+** ** 15 ** 12 **** 255 255 255 fncy.ttf Christmas in 10 Days!
+** ** 14 ** 12 **** 255 255 255 fncy.ttf Christmas in 11 Days!
+** ** 13 ** 12 **** 255 255 255 fncy.ttf Christmas in 12 Days!
+** ** 12 ** 12 **** 255 255 255 fncy.ttf Christmas in 13 Days!
+** ** 11 ** 12 **** 255 255 255 fncy.ttf Christmas in 14 Days!
+** ** 10 ** 12 **** 255 255 255 fncy.ttf Christmas in 15 Days!
+** ** 09 ** 12 **** 255 255 255 fncy.ttf Christmas in 16 Days!
+** ** 08 ** 12 **** 255 255 255 fncy.ttf Christmas in 17 Days!
+** ** 07 ** 12 **** 255 255 255 fncy.ttf Christmas in 18 Days!
+** ** 06 ** 12 **** 255 255 255 fncy.ttf Christmas in 19 Days!
+** ** 05 ** 12 **** 255 255 255 fncy.ttf Christmas in 20 Days!
+** ** 04 ** 12 **** 255 255 255 fncy.ttf Christmas in 21 Days!
+** ** 03 ** 12 **** 255 255 255 fncy.ttf Christmas in 22 Days!
+** ** 02 ** 12 **** 255 255 255 fncy.ttf Christmas in 23 Days!
+** ** 01 ** 12 **** 255 255 255 fncy.ttf Christmas in 24 Days!
