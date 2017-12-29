@@ -2,7 +2,8 @@
 XML xml;
 int previous_update;
 String server = "http://query.yahooapis.com/v1/public/yql?format=xml&q=select+*+from+weather.forecast+where+woeid=";
-String location = "2356937+and+u='F'";
+// athens: String location = "2356937+and+u='F'";
+String location = "2383660+and+u='F'"; //c-bus
 String city;
 String region;
 String sunrise;
