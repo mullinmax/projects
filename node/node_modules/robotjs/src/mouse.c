@@ -103,7 +103,7 @@ void moveMouse(MMPoint point)
 	Display *display = XGetMainDisplay();
 	XWarpPointer(display, None, DefaultRootWindow(display),
 	             0, 0, 0, 0, point.x, point.y);
-	XFlush(display);
+	XSync(display, false);
 #elif defined(IS_WINDOWS)
 	//Mouse motion is now done using SendInput with MOUSEINPUT. We use Absolute mouse positioning
 	#define MOUSE_COORD_TO_ABS(coord, width_or_height) (((65536 * coord) / width_or_height) + (coord < 0 ? -1 : 1))
@@ -184,7 +184,7 @@ void toggleMouse(bool down, MMMouseButton button)
 #elif defined(USE_X11)
 	Display *display = XGetMainDisplay();
 	XTestFakeButtonEvent(display, button, down ? True : False, CurrentTime);
-	XFlush(display);
+	XSync(display, false);
 #elif defined(IS_WINDOWS)
 	mouse_event(MMMouseToMEventF(down, button), 0, 0, 0, 0);
 #endif
@@ -256,8 +256,20 @@ void scrollMouse(int x, int y)
 
 #elif defined(USE_X11)
 
-	int ydir = 4; /* Button 4 is up, 5 is down. */
-	int xdir = 6;
+	/*
+	X11 Mouse Button Numbering
+	1 = left button
+	2 = middle button (pressing the scroll wheel)
+	3 = right button
+	4 = turn scroll wheel up
+	5 = turn scroll wheel down
+	6 = push scroll wheel left
+	7 = push scroll wheel right
+	8 = 4th button (aka browser backward button)
+	9 = 5th button (aka browser forward button)
+	*/
+	int ydir = 4; // Button 4 is up, 5 is down.
+	int xdir = 6; // Button 6 is left, 7 is right.
 	Display *display = XGetMainDisplay();
 
 	if (y < 0){
@@ -274,29 +286,30 @@ void scrollMouse(int x, int y)
 		XTestFakeButtonEvent(display, xdir, 0, CurrentTime);
 	}
 	for (yi = 0; yi < abs(y); yi++) {
-		YTestFakeButtonEvent(display, ydir, 1, CurrentTime);
-		YTestFakeButtonEvent(display, ydir, 0, CurrentTime);
+		XTestFakeButtonEvent(display, ydir, 1, CurrentTime);
+		XTestFakeButtonEvent(display, ydir, 0, CurrentTime);
 	}
 
-	XFlush(display);
+	XSync(display, false);
 
 #elif defined(IS_WINDOWS)
 
 	mouseScrollInputH.type = INPUT_MOUSE;
 	mouseScrollInputH.mi.dx = 0;
 	mouseScrollInputH.mi.dy = 0;
-	mouseScrollInputH.mi.dwFlags = MOUSEEVENTF_WHEEL;
+	mouseScrollInputH.mi.dwFlags = MOUSEEVENTF_HWHEEL;
 	mouseScrollInputH.mi.time = 0;
 	mouseScrollInputH.mi.dwExtraInfo = 0;
-	mouseScrollInputH.mi.mouseData = WHEEL_DELTA * x;
+	// Flip x to match other platforms.
+	mouseScrollInputH.mi.mouseData = -x;
 
 	mouseScrollInputV.type = INPUT_MOUSE;
 	mouseScrollInputV.mi.dx = 0;
 	mouseScrollInputV.mi.dy = 0;
-	mouseScrollInputV.mi.dwFlags = MOUSEEVENTF_HWHEEL;
+	mouseScrollInputV.mi.dwFlags = MOUSEEVENTF_WHEEL;
 	mouseScrollInputV.mi.time = 0;
 	mouseScrollInputV.mi.dwExtraInfo = 0;
-	mouseScrollInputV.mi.mouseData = WHEEL_DELTA * y;
+	mouseScrollInputV.mi.mouseData = y;
 
 	SendInput(1, &mouseScrollInputH, sizeof(mouseScrollInputH));
 	SendInput(1, &mouseScrollInputV, sizeof(mouseScrollInputV));
