@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Max and Brittney's Grad Party</title>
+		<script>
+			function imgRescale(){
+				console.log("run");
+				var img = document.getElementById("background");
+				var w = window.innerWidth
+				var h = window.innerHeight
+				if (w/3 > h/2){
+					img.style.width = "100vw";
+					img.style.height = (100*2/3)+"vw";
+					img.style.left = (img.offsetWidth - w) / 2;
+					img.style.right = (img.offsetWidth - w) / 2;
+					img.style.top = (img.offsetHeight - h) / 2;
+				} else {
+					img.style.width = (100*3/2)+"vh";
+					img.style.height = "100vh";
+					img.style.left = (img.offsetWidth - w)/ 2;
+					img.style.right = (img.offsetWidth - w) / 2;
+					img.style.top = (img.offsetHeight - h) / 2;
+				}
+			}
+		</script>
+		<style>
+			.form{
+				grid-row: 1;
+				grid-column: 1;
+				justify-self: center; 
+				align-self: center;
+				box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+			}
+		</style>
+	</head>
+	<body onresize="imgRescale()" style="margin: 0px;">
+		<!-- <img id="background" style="width: 100vw; height: auto; overflow: hidden;grid-row: 1; grid-column: 1" src="./pics/hats.jpeg"> -->
+		<img id="background" style="width: 100vw; height: auto; position: fixed;" src="./pics/hats.jpeg">
+		<div style="display: grid;position: fixed; top:0 ;left:0; width: 100%; height: 100%; overflow: hidden;">
+			<!-- <img id="background" style="width: 100vw; height: auto; overflow: hidden;grid-row: 1; grid-column: 1" src="./pics/hats.jpeg"> -->
+			<div class="form">
+				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfB4Kp4lVctdnqFmvwVN54bhaivmVO9z4P6n9VCAnaaLTkOzg/viewform?embedded=true" style="width: 760px; height: 90vh" frameborder="0" marginheight="0" marginwidth="0"><img id="background" style="width: 100vw; height: auto; position: fixed;" src="./pics/spinner.gif"></iframe>
+			</div>
+		</div>
+	</body>
+</html> 

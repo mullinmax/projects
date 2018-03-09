@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Max and Brittney's Grad Party</title>
+
+	</head>
+	<body onresize="imgRescale()">
+		<!-- <img id="background" style="width: 100vw; height: auto; overflow: hidden;grid-row: 1; grid-column: 1" src="./pics/hats.jpeg"> -->
+		<div style="display: grid; width: 100vw; height: 100vh; overflow: hidden;">
+			<img id="background" style="width: 100vw; height: auto; overflow: hidden;grid-row: 1; grid-column: 1" src="./pics/hats.jpeg">
+			<div style="grid-row: 1; grid-column: 1; justify-self: center; align-self: center;">
+				<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfB4Kp4lVctdnqFmvwVN54bhaivmVO9z4P6n9VCAnaaLTkOzg/viewform?embedded=true" style="width: 760px; height: 90vh" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+			</div>
+		</div>
+		<script>
+			(function(){
+				console.log("help me");
+				function imgRescale(){
+					console.log("run");
+					var video = document.getElementById("background");
+					var w = window.innerWidth
+					var h = window.innerHeight
+					if (w/16 > h/9){
+						video.style.width = "100vw";
+						video.style.height = (100*9/16)+"vw";
+						video.style.left = (video.offsetWidth - w) / 2;
+						video.style.right = (video.offsetWidth - w) / 2;
+						video.style.top = (video.offsetHeight - h) / 2;
+					} else {
+						video.style.width = (100*16/9)+"vh";
+						video.style.height = "100vh";
+						video.style.left = (video.offsetWidth - w)/ 2;
+						video.style.right = (video.offsetWidth - w) / 2;
+						video.style.top = (video.offsetHeight - h) / 2;
+					}
+				}
+			}());
+		</script>
+	</body>
+</html> 
